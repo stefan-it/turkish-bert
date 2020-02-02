@@ -5,12 +5,20 @@ We present cased and uncased models BERT models for Turkish 🎉
 **Note**: the model evaluation and training is currently in progress,
 so the results here could change quite quickly.
 
+# Changelog
+
+* 02.02.2020: Initial version of this repo.
+
 # Stats
 
 The current version of the model was trained on a filtered and sentence
 segmented version of the Turkish [OSCAR corpus](https://traces1.inria.fr/oscar/).
 
 The final training corpus has a size of 26GB and 32,50,152,191 tokens.
+
+Thanks to Google's TensorFlow Research Cloud (TFRC) the cased model was trained for
+2M steps on a TPU v3-8. You can find the TensorBoard output
+[here](https://tensorboard.dev/experiment/4rwanaUaS32uX1kyx2CkZA/#scalars).
 
 # Evaluation
 
@@ -31,6 +39,7 @@ for training the PoS tagging models. Averaged F-score over 5 runs is reported
 | XLM-R (large, cased) | (95.72) / 95.89 | (96.11) / 96.02 | (95.95) / 96.20 | (96.02) / 96.14 | (96.07) / 95.87 | (95.97) / 96.02
 | TrBERT (base, cased) | (96.09) / 96.28 | (95.86) / 96.18 | (96.10) / 96.20 | (95.94) / 96.03 | (95.83) / 96.15 | (95.96) / **96.17**
 
-# Changelog
+# Acknowledgments
 
-* 02.02.2020: Initial version of this repo.
+Research supported with Cloud TPUs from Google's TensorFlow Research Cloud (TFRC).
+Thanks for providing access to the TFRC ❤️
