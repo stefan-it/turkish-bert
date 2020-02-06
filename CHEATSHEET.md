@@ -122,6 +122,58 @@ So in this example we use 5 parallel processes. Furthermore, we use a sequence
 length of 512. You could start with a sequence length of 128, train the model
 for a few steps and then fine-tune the model with a sequence length of 512.
 
+## Uncased model
+
+The steps for the uncased model are pretty much identical to the steps for the
+cased model.
+
+However, we need to lowercase the training corpus first. In this example we
+use GNU AWK to lowercase the corpus. On Debian/Ubuntu please make sure that
+you've installed GNU AWK with:
+
+```bash
+sudo apt install gawk
+```
+
+Then the corpus can be lowercased with:
+
+```bash
+cat tr_final | gawk '{print tolower($0);}' > tr_final.lower
+```
+
+We split the lowercased corpus into 1G shards with:
+
+```bash
+split -C 1G tr_final.lower tr-
+```
+
+and move the shards into a separate folder:
+
+```bash
+mkdir uncased_shards
+mv tr-* uncased_shards/
+```
+
+The number of parallel processes can be configured with:
+
+```bash
+export NUM_PROC=5
+```
+
+Then you can start the preprocessing with:
+
+```bash
+cd bert # go to the BERT repo
+
+find ../uncased_shards -type f | xargs -I% -P $NUM_PROC -n 1 \
+python3 create_pretraining_data.py --input_file % --output_file %.tfrecord \
+--vocab_file ../uncased-vocab.txt --do_lower_case=True -max_seq_length=512 \
+--max_predictions_per_seq=75 --masked_lm_prob=0.15 --random_seed=12345 \
+--dupe_factor=5
+```
+
+Please make sure, that you use `--do_lower_case=True` and the lowercased vocab!
+
 # BERT Pretraining
 
 ## Uploading TFRecords
@@ -129,8 +181,9 @@ for a few steps and then fine-tune the model with a sequence length of 512.
 The previously created TFRecords are copied into a separate folder:
 
 ```bash
-mkdir cased_tfrecords
+mkdir cased_tfrecords uncased_tfrecords
 mv cased_shards/*.tfrecord cased_tfrecords
+mv uncased_shards/*.tfrecord uncased_tfrecords
 ```
 
 Then this folder can be uploaded to a Google Storage Bucket using the `gsutil`
@@ -138,6 +191,7 @@ command:
 
 ```bash
 gsutil -m -o GSUtil:parallel_composite_upload_threshold=150M cp -r cased_tfrecords gs://trbert
+gsutil -m -o GSUtil:parallel_composite_upload_threshold=150M cp -r uncased_tfrecords gs://trbert
 ```
 
 **Notice**: You must create a Google Storage Bucket first. Please also make
@@ -152,6 +206,13 @@ instance can be created with:
 ```bash
 gcloud compute tpus create bert --zone=<zone> --accelerator-type=v3-8 \
 --network=default --range=192.168.1.0/29 --version=1.15
+```
+
+Another TPU is created for the training the uncased model:
+
+```bash
+gcloud compute tpus create bert-2 --zone=<zone> --accelerator-type=v3-8 \
+--network=default --range=192.168.2.0/29 --version=1.15
 ```
 
 Please make sure, that you've set the correct `--zone` to avoid extra costs.
@@ -218,5 +279,17 @@ python3 run_pretraining.py --input_file=gs://trbert/cased_tfrecords/*.tfrecord \
 --tpu_name=bert --num_tpu_cores=8
 ```
 
-This will train the model for 3M steps. Checkpoints are saved after 100k steps.
-The last 20 checkpoints will be kept.
+To train the uncased model, just create a new tmux session window and run the
+pretraining command for the uncased model:
+
+```bash
+python3 run_pretraining.py --input_file=gs://trbert/uncased_tfrecords/*.tfrecord \
+--output_dir=gs://trbert/bert-base-turkish-uncased --bert_config_file=config.json \
+--max_seq_length=512 --max_predictions_per_seq=75 --do_train=True \
+--train_batch_size=128 --num_train_steps=3000000 --learning_rate=1e-4 \
+--save_checkpoints_steps=100000 --keep_checkpoint_max=20 --use_tpu=True \
+--tpu_name=bert-2 --num_tpu_cores=8
+```
+
+This will train cased and uncased models for 3M steps. Checkpoints are saved
+after 100k steps. The last 20 checkpoints will be kept.
