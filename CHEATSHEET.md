@@ -6,7 +6,10 @@ For the 🇹🇷 BERT model we collect ~ 35GB text from various sorces like
 [OPUS](http://opus.nlpl.eu/), Wikipedia, [Leipzig Corpora Collection](https://wortschatz.uni-leipzig.de/en/download)
 or from the [OSCAR corpus](https://traces1.inria.fr/oscar/).
 
-We split the training corpus into 1G shards using `split -C 1G`.
+In a preprocessing step we use the Turkish NLTK model to perform sentence splitting on the corpus. After sentence
+splitting we remove all sentences that are shorter than 5 tokens.
+
+Then we split the preprocessed training corpus into 1G shards using `split -C 1G`.
 
 # Vocab generation
 
