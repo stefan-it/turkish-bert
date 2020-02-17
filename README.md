@@ -67,7 +67,7 @@ We converted the dataset into CoNLL-like format and used a 80/10/10 training, de
 
 Thanks to [Kemal Oflazer](http://www.andrew.cmu.edu/user/ko/) for providing us
 additional large corpora for Turkish. Many thanks to Reyyan Yeniterzi for providing
-use the Turkish NER dataset for evaluation.
+us the Turkish NER dataset for evaluation.
 
 Research supported with Cloud TPUs from Google's TensorFlow Research Cloud (TFRC).
 Thanks for providing access to the TFRC ❤️
