@@ -7,7 +7,7 @@ awesome Turkish NLP community, as well as the decision for the model name: BERTu
 
 # Changelog
 
-* 10.03.2020: Release of the cased distilled *BERTurk* model: *DistilBERTurk*.
+* 11.03.2020: Release of the cased distilled *BERTurk* model: *DistilBERTurk*.
               Available on the [Hugging Face model hub](https://huggingface.co/dbmdz/distilbert-base-turkish-cased)
 * 17.02.2020: Release of the cased *BERTurk* model.
               Available on the [Hugging Face model hub](https://huggingface.co/dbmdz/bert-base-turkish-cased)
