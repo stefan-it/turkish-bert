@@ -7,6 +7,7 @@ awesome Turkish NLP community, as well as the decision for the model name: BERTu
 
 # Changelog
 
+* 25.03.2020: Release of *BERTurk* uncased model and *BERTurk* models with larger vocab size (128k, cased and uncased)
 * 11.03.2020: Release of the cased distilled *BERTurk* model: *DistilBERTurk*.
               Available on the [Hugging Face model hub](https://huggingface.co/dbmdz/distilbert-base-turkish-cased)
 * 17.02.2020: Release of the cased *BERTurk* model.
@@ -29,6 +30,8 @@ the training here:
 
 * [TensorBoard cased model](https://tensorboard.dev/experiment/ZgFk8LclQOKdW0pYWviLMg/)
 * [TensorBoard uncased model](https://tensorboard.dev/experiment/5LlD11cWRwexyqKSEPPXGA/)
+
+We also provide cased and uncased models that aŕe using a larger vocab size (128k instead of 32k).
 
 ## *DistilBERTurk*
 
@@ -62,12 +65,15 @@ from Universal Dependencies is used for PoS tagging evaluation. We use the `dev`
 commit `a6c955`. Result on development set is reported in brackets.
 
 
-| Model                                  | Run 1           | Run 2           | Run 3           | Run 4           | Run 5           | Avg.
-| -------------------------------------- | --------------- | --------------- | --------------- | --------------- | --------------- | -------------------
-| mBERT (base, cased)                    | (95.20) / 95.55 | (95.28) / 95.16 | (95.41) / 95.52 | (95.19) / 95.41 | (95.17) / 95.28 | (95.25) / 95.38
-| XLM-R (large, cased)                   | (94.88) / 95.27 | (95.12) / 95.37 | (95.01) / 95.38 | (94.98) / 95.64 | (95.44) / 95.36 | (95.09) / 95.40
-| BERTurk, 1.9M steps (base, cased)      | (96.82) / 97.05 | (96.96) / 96.81 | (96.89) / 96.88 | (96.95) / 97.06 | (96.76) / 96.84 | (96.88) / **96.93**
-| DistilBERTurk (base, cased)            | (96.19) / 96.14 | (96.11) / 96.19 | (96.13) / 96.44 | (96.18) / 96.18 | (96.08) / 96.26 | (96.14) / 96.24
+| Model                                    | Run 1           | Run 2           | Run 3           | Run 4           | Run 5           | Avg.
+| ---------------------------------------- | --------------- | --------------- | --------------- | --------------- | --------------- | -------------------
+| mBERT (base, cased)                      | (95.20) / 95.55 | (95.28) / 95.16 | (95.41) / 95.52 | (95.19) / 95.41 | (95.17) / 95.28 | (95.25) / 95.38
+| XLM-R (large, cased)                     | (94.88) / 95.27 | (95.12) / 95.37 | (95.01) / 95.38 | (94.98) / 95.64 | (95.44) / 95.36 | (95.09) / 95.40
+| BERTurk, 1.9M steps (base, cased)        | (96.82) / 97.05 | (96.96) / 96.81 | (96.89) / 96.88 | (96.95) / 97.06 | (96.76) / 96.84 | (96.88) / 96.93
+| BERTurk, 1.8M steps (base, uncased)      | (96.99) / 97.00 | (96.90) / 96.82 | (96.88) / 96.90 | (96.91) / 96.92 | (96.99) / 97.10 | (96.93) / 96.95
+| BERTurk-128k, 1.8M steps (base, cased)   | (96.55) / 96.86 | (96.51) / 96.99 | (96.74) / 97.15 | (96.45) / 96.83 | (96.48) / 97.05 | (96.55) / **96.98**
+| BERTurk-128k, 2M steps (base, uncased)   | (96.78) / 96.91 | (96.69) / 96.96 | (96.70) / 96.99 | (96.86) / 96.83 | (97.01) / 96.93 | (96.81) / 96.92
+| DistilBERTurk (base, cased)              | (96.19) / 96.14 | (96.11) / 96.19 | (96.13) / 96.44 | (96.18) / 96.18 | (96.08) / 96.26 | (96.14) / 96.24
 
 ## NER
 
@@ -75,12 +81,15 @@ NER dataset is similar to the one used in [this paper](https://www.aclweb.org/an
 We converted the dataset into CoNLL-like format and used a 80/10/10 training, development and test split.
  Result on development set is reported in brackets.
 
-| Model                                  | Run 1           | Run 2           | Run 3           | Run 4           | Run 5           | Avg.
-| -------------------------------------- | --------------- | --------------- | --------------- | --------------- | --------------- | -------------------
-| mBERT (base, cased)                    | (93.51) / 93.79 | (93.63) / 93.44 | (94.11) / 93.67 | (93.95) / 93.40 | (94.08) / 93.76 | (93.86) / 93.61
-| XLM-R (large, cased)                   | (94.86) / 94.51 | (94.79) / 94.08 | (94.57) / 94.32 | (94.91) / 94.09 | (94.97) / 94.47 | (94.82) / 94.29
-| BERTurk, 1.9M steps (base, cased)      | (95.12) / 94.80 | (95.07) / 95.00 | (95.33) / 94.69 | (95.03) / 94.87 | (95.22) / 94.91 | (95.15) / **94.85**
-| DistilBERTurk (base, cased)            | (99.56) / 93.26 | (92.01) / 93.26 | (88.15) / 93.04 | (92.50) / 92.97 | (91.20) / 93.30 | (92.68) / 93.17
+| Model                                    | Run 1           | Run 2           | Run 3           | Run 4           | Run 5           | Avg.
+| ---------------------------------------- | --------------- | --------------- | --------------- | --------------- | --------------- | -------------------
+| mBERT (base, cased)                      | (93.51) / 93.79 | (93.63) / 93.44 | (94.11) / 93.67 | (93.95) / 93.40 | (94.08) / 93.76 | (93.86) / 93.61
+| XLM-R (large, cased)                     | (94.86) / 94.51 | (94.79) / 94.08 | (94.57) / 94.32 | (94.91) / 94.09 | (94.97) / 94.47 | (94.82) / 94.29
+| BERTurk, 1.9M steps (base, cased)        | (95.12) / 94.80 | (95.07) / 95.00 | (95.33) / 94.69 | (95.03) / 94.87 | (95.22) / 94.91 | (95.15) / 94.85
+| BERTurk, 1.8M steps (base, uncased)      | (94.82) / 94.62 | (95.02) / 94.62 | (94.69) / 94.81 | (95.02) / 94.52 | (95.07) / 94.63 | (94.92) / 94.64
+| BERTurk-128k, 1.8M steps (base, cased)   | (95.07) / 95.41 | (95.47) / 95.30 | (95.35) / 95.35 | (94.74) / 95.20 | (95.17) / 95.23 | (95.16) / **95.30**
+| BERTurk-128k, 2M steps (base, uncased)   | (94.73) / 94.85 | (94.77) / 94.95 | (94.68) / 94.62 | (94.47) / 94.93 | (94.86) / 94.76 | (94.70) / 94.83
+| DistilBERTurk (base, cased)              | (99.56) / 93.26 | (92.01) / 93.26 | (88.15) / 93.04 | (92.50) / 92.97 | (91.20) / 93.30 | (92.68) / 93.17
 
 # Acknowledgments
 
