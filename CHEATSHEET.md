@@ -69,7 +69,7 @@ trainer = tokenizer.train(
     wordpieces_prefix="##"
 )
 
-tokenizer.save("./", "cased")
+tokenizer.save("./", "uncased")
 ```
 
 # BERT preprocessing
