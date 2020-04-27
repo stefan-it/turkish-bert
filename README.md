@@ -1,5 +1,7 @@
 # 🇹🇷 BERTurk
 
+[![DOI](https://zenodo.org/badge/237817454.svg)](https://zenodo.org/badge/latestdoi/237817454)
+
 We present community-driven cased and uncased models BERT models for Turkish 🎉
 
 Some datasets used for pretraining and evaluation are contributed from the
