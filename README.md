@@ -95,6 +95,23 @@ We converted the dataset into CoNLL-like format and used a 80/10/10 training, de
 | BERTurk-128k, 2M steps (base, uncased)   | (94.73) / 94.85 | (94.77) / 94.95 | (94.68) / 94.62 | (94.47) / 94.93 | (94.86) / 94.76 | (94.70) / 94.83
 | DistilBERTurk (base, cased)              | (99.56) / 93.26 | (92.01) / 93.26 | (88.15) / 93.04 | (92.50) / 92.97 | (91.20) / 93.30 | (92.68) / 93.17
 
+# Citation
+
+You can use the following BibTeX entry for citation:
+
+```bibtex
+@software{stefan_schweter_2020_3770924,
+  author       = {Stefan Schweter},
+  title        = {BERTurk - BERT models for Turkish},
+  month        = apr,
+  year         = 2020,
+  publisher    = {Zenodo},
+  version      = {1.0.0},
+  doi          = {10.5281/zenodo.3770924},
+  url          = {https://doi.org/10.5281/zenodo.3770924}
+}
+```
+
 # Acknowledgments
 
 Thanks to [Kemal Oflazer](http://www.andrew.cmu.edu/user/ko/) for providing us
