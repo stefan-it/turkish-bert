@@ -35,7 +35,7 @@ the training here:
 
 We also provide cased and uncased models that aŕe using a larger vocab size (128k instead of 32k).
 
-A detailed cheetsheat of how the models were trained, can be found [here](CHEETSHEAT.md).
+A detailed cheatsheet of how the models were trained, can be found [here](CHEATSHEET.md).
 
 ## *DistilBERTurk*
 
