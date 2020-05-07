@@ -41,8 +41,20 @@ The following figure shows evaluation on PoS tagging:
 
 ![ELECTRA small - PoS tagging](figures/electra-small-pos-tagging.png)
 
+Results for the best checkpoint (Development set results in brackets):
+
+| Checkpoint | Run 1                         | Run 2                         | Run 3                         | Run 4                         | Run 5                         | Avg.
+| ---------- | ----------------------------- | ----------------------------- | ----------------------------- | ----------------------------- | ----------------------------- | -----------------------------
+| 1M steps   | (0.9566991838) / 0.9584205803 | (0.9577941469) / 0.9589191345 | (0.9564005574) / 0.9591185562 | (0.9544097153) / 0.9585202912 | (0.9545092574) / 0.9582211586 | (0.9559625722) / 0.9586399442
+
 ## NER
 
 The following figure shows evaluation on NER dataset:
 
 ![ELECTRA small - NER](figures/electra-small-ner.png)
+
+Results for the best checkpoint (Development set results in brackets):
+
+| Checkpoint | Run 1                         | Run 2                         | Run 3                       | Run 4                         | Run 5                        | Avg.
+| ---------- | ----------------------------- | ----------------------------- | --------------------------- | ----------------------------- | ---------------------------- | -----------------------------
+| 1M steps   | (0.9447249898) / 0.9468226535 | (0.9420923245) / 0.9438978995 | (0.942090203) / 0.947102605 | (0.9428180575) / 0.9434262948 | (0.943890785) / 0.9446514103 | (0.9431232719) / 0.9451801726
