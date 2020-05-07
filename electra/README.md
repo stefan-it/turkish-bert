@@ -17,6 +17,10 @@ Extrinsic evaluations are done for PoS tagging and NER. During pre-training chec
 every 100k steps. For the final evaluation on downstream taks we evaluate all 10 checkpoints.
 We use the same datasets for evaluation as for [*BERTurk*](https://github.com/stefan-it/turkish-bert#evaluation).
 
+Averaged Accuracy (PoS tagging) or averaged F1-Score (NER) over 5 runs for each checkpoint is reported.
+That means 50 experiments on each downstream task were performed to select the best and final checkpoint
+for the model release.
+
 * [IMST dataset](https://github.com/UniversalDependencies/UD_Turkish-IMST) for 
 
 Evaluation is done with the Hugging Face Transformers library and the [token classification](https://github.com/huggingface/transformers/tree/master/examples/token-classification)
