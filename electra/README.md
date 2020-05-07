@@ -21,8 +21,6 @@ Averaged Accuracy (PoS tagging) or averaged F1-Score (NER) over 5 runs for each 
 That means 50 experiments on each downstream task were performed to select the best and final checkpoint
 for the model release.
 
-* [IMST dataset](https://github.com/UniversalDependencies/UD_Turkish-IMST) for 
-
 Evaluation is done with the Hugging Face Transformers library and the [token classification](https://github.com/huggingface/transformers/tree/master/examples/token-classification)
 example script `run_ner.py`. We use the following hyper-parameters:
 
