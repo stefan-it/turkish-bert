@@ -31,7 +31,7 @@ example script `run_ner.py`. We use the following hyper-parameters:
 # ELECTRA small
 
 The ELECTRA small model was trained with the official implementation. The TensorBoard for ELECTRA small
-can be found [here](https://tensorboard.dev/experiment/9PO6Qwn7RdGA2trgLuAN2A/).
+can be found [here](https://tensorboard.dev/experiment/x8OO1Q6aRCyC5rkXQrEfEw).
 
 ## PoS Tagging
 
