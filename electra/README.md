@@ -33,7 +33,7 @@ example script `run_ner.py`. We use the following hyper-parameters:
 # ELECTRA small
 
 The ELECTRA small model was trained with the official implementation. The TensorBoard for ELECTRA small
-can be found [here](https://tensorboard.dev/experiment/x8OO1Q6aRCyC5rkXQrEfEw).
+can be found [here](https://tensorboard.dev/experiment/x7RKNiL0SAuPN3rfkg0g1Q).
 
 ## PoS Tagging
 
@@ -58,3 +58,68 @@ Results for the best checkpoint (Development set results in brackets):
 | Checkpoint | Run 1             | Run 2             | Run 3             | Run 4             | Run 5             | Avg.
 | ---------- | ----------------- | ----------------- | ----------------- | ----------------- | ----------------  | -----------------
 | 1M steps   | (0.9447) / 0.9468 | (0.9421) / 0.9439 | (0.9421) / 0.9471 | (0.9428) / 0.9434 | (0.9439) / 0.9447 | (0.9431) / 0.9452
+
+# ELECTRA base
+
+The ELECTRA base model was trained with the official implementation. The TensorBoard for that model
+can be found [here](https://tensorboard.dev/experiment/YDBnRWY3R1CGWS2wQNKFwQ).
+
+## PoS Tagging
+
+The following figure shows evaluation on PoS tagging:
+
+![ELECTRA base - PoS tagging](figures/electra-base-pos-tagging.png)
+
+Results for the best checkpoints (Development set results in brackets):
+
+| Checkpoint | Run 1             | Run 2             | Run 3             | Run 4             | Run 5             | Avg.
+| ---------- | ----------------- | ----------------- | ----------------- | ----------------- | ----------------- | -----------------
+| 800k steps | (0.9707) / 0.9734 | (0.9710) / 0.9734 | (0.9712) / 0.9745 | (0.9728) / 0.9719 | (0.9711) / 0.9727 | (0.9714) / 0.9732
+| 1M steps   | (0.9699) / 0.9727 | (0.9697) / 0.9728 | (0.9715) / 0.9743 | (0.9697) / 0.9724 | (0.9710) / 0.9737 | (0.9704) / 0.9732
+
+## NER
+
+The following figures shows evaluation on NER dataset:
+
+![ELECTRA small - NER](figures/electra-base-ner.png)
+
+Results for the best checkpoints (Development set results in brackets):
+
+| Checkpoint | Run 1             | Run 2             | Run 3             | Run 4             | Run 5             | Avg.
+| ---------- | ----------------- | ----------------- | ----------------- | ----------------- | ----------------- | -----------------
+| 800k steps | (0.9564) / 0.9566 | (0.9552) / 0.9557 | (0.9579) / 0.9567 | (0.9563) / 0.9570 | (0.9568) / 0.9577 | (0.9565) / 0.9567
+| 1M steps   | (0.9577) / 0.9546 | (0.9553) / 0.9600 | (0.9574) / 0.9570 | (0.9598) / 0.9590 | (0.9545) / 0.9563 | (0.9569) / 0.9574
+
+# Checkpoint selection
+
+For the final ELECTRA small model we use the checkpoint for 1M steps, because this checkpoint achieves the highest scores on development
+set for both PoS tagging and NER.
+
+For the final ELECTRA base model we use the checkpoint after 800k steps, because this checkpoint achieves the best scores on average.
+The checkpoint after 1M steps performs best for NER, but is the second best checkpoint for PoS tagging. The 800k steps checkpoint performs
+best for PoS tagging and is the second best checkpoint for NER. For the final checkpoint selection, we simply compare the best average score
+for both tasks, and the checkpoint for 800k is slightly better.
+
+# ELECTRA small vs. base
+
+In this section we present model comparisons for PoS tagging and NER.
+
+The following figure shows difference between ELECTRA small and base for PoS tagging on development set:
+
+![ELECTRA small vs. base - PoS tagging](figures/electra-small-base-pos-tagging-comparison.png)
+
+The next figure shows a model comparison for NER on development set:
+
+![ELECTRA small vs. base - NER](figures/electra-small-base-ner-tagging-comparison.png)
+
+# Model loss
+
+In this section we present the model loss for each checkpoint for small and base ELECTRA models.
+
+Loss curve for each checkpoint step for small model:
+
+![ELECTRA small - loss](figures/electra-small-loss.png)
+
+And the loss curve for each checkpoint for the base model:
+
+![ELECTRA base - loss](figures/electra-base-loss.png)
