@@ -21,15 +21,6 @@ Averaged Accuracy (PoS tagging) or averaged F1-Score (NER) over 5 runs for each 
 That means 50 experiments on each downstream task were performed to select the best and final checkpoint
 for the model release.
 
-Evaluation is done with the Hugging Face Transformers library and the [token classification](https://github.com/huggingface/transformers/tree/master/examples/token-classification)
-example script `run_ner.py`. We use the following hyper-parameters:
-
-| Parameter       | Value
-| --------------- | -----
-| `batch_size`    | 16
-| `learning_rate` | 5e-5
-| `num_epochs`    | 10
-
 # ELECTRA small
 
 The ELECTRA small model was trained with the official implementation. The TensorBoard for ELECTRA small
