@@ -2,19 +2,21 @@
 
 [![DOI](https://zenodo.org/badge/237817454.svg)](https://zenodo.org/badge/latestdoi/237817454)
 
-We present community-driven cased and uncased models BERT models for Turkish 🎉
+We present community-driven BERT and ELECTRA models for Turkish 🎉
 
 Some datasets used for pretraining and evaluation are contributed from the
-awesome Turkish NLP community, as well as the decision for the model name: BERTurk.
+awesome Turkish NLP community, as well as the decision for the BERT model name: BERTurk.
 
 # Changelog
 
-* 25.03.2020: Release of *BERTurk* uncased model and *BERTurk* models with larger vocab size (128k, cased and uncased)
+* 12.05.2020: Release of ELEC**TR**A ([small](https://huggingface.co/dbmdz/electra-small-turkish-cased-discriminator) 
+              and [base](https://huggingface.co/dbmdz/electra-base-turkish-cased-discriminator)) models, see [here](electra/README.md).
+* 25.03.2020: Release of *BERTurk* uncased model and *BERTurk* models with larger vocab size (128k, cased and uncased).
 * 11.03.2020: Release of the cased distilled *BERTurk* model: *DistilBERTurk*.
               Available on the [Hugging Face model hub](https://huggingface.co/dbmdz/distilbert-base-turkish-cased)
 * 17.02.2020: Release of the cased *BERTurk* model.
               Available on the [Hugging Face model hub](https://huggingface.co/dbmdz/bert-base-turkish-cased)
-* 10.02.2020: Training corpus update, new TensorBoard links, new results for cased model
+* 10.02.2020: Training corpus update, new TensorBoard links, new results for cased model.
 * 02.02.2020: Initial version of this repo.
 
 # Stats
@@ -37,7 +39,7 @@ We also provide cased and uncased models that aŕe using a larger vocab size (12
 
 A detailed cheatsheet of how the models were trained, can be found [here](CHEATSHEET.md).
 
-## *DistilBERTurk*
+# *DistilBERTurk*
 
 The distilled version of a cased model, so called *DistilBERTurk*, was trained
 on 7GB of the original training data, using the cased version of *BERTurk*
@@ -52,15 +54,28 @@ More details about distillation can be found in the
 ["DistilBERT, a distilled version of BERT: smaller, faster, cheaper and lighter"](https://arxiv.org/abs/1910.01108)
 paper by Sanh et al. (2019).
 
+# ELECTRA
+
+In addition to the *BERTurk* models, we also trained ELEC**TR**A small and base models. A detailed overview can be found
+in the [ELECTRA section](electra/README.md).
+
 # Evaluation
 
-We use [FARM](https://github.com/deepset-ai/FARM) for evaluation on both PoS and NER datasets.
-All configuration files can be found in the `configs` folder of this repository. We report
-averaged Accuracy (PoS tagging) and F-Score (NER) on 5 runs (initialized with 5 different seeds).
+We use the [token classification example](https://github.com/huggingface/transformers/tree/master/examples/token-classification)
+from 🤗/Transformers for evaluation on both PoS and NER datasets.
+We report averaged Accuracy (PoS tagging) and F-Score (NER) on 5 runs (initialized with 5 different seeds).
 
-We evaluated 5 different checkpoints for our cased and uncased models based on the development
-score for PoS tagging and NER. The model with the best results is used for the final and released
-model.
+*BERTurk* and ELECTRA model checkpoint selection: We evaluated 5 different checkpoints for our cased and uncased models based on
+the development score for PoS tagging and NER. The model with the best results is used for the final and released model.
+
+Evaluation is done with the Hugging Face Transformers library and the [token classification](https://github.com/huggingface/transformers/tree/master/examples/token-classification)
+example script `run_ner.py`. We use the following hyper-parameters:
+
+| Parameter       | Value
+| --------------- | -----
+| `batch_size`    | 16
+| `learning_rate` | 5e-5
+| `num_epochs`    | 10
 
 ## PoS tagging
 
@@ -69,31 +84,61 @@ from Universal Dependencies is used for PoS tagging evaluation. We use the `dev`
 commit `a6c955`. Result on development set is reported in brackets.
 
 
-| Model                                    | Run 1           | Run 2           | Run 3           | Run 4           | Run 5           | Avg.
-| ---------------------------------------- | --------------- | --------------- | --------------- | --------------- | --------------- | -------------------
-| mBERT (base, cased)                      | (95.20) / 95.55 | (95.28) / 95.16 | (95.41) / 95.52 | (95.19) / 95.41 | (95.17) / 95.28 | (95.25) / 95.38
-| XLM-R (large, cased)                     | (94.88) / 95.27 | (95.12) / 95.37 | (95.01) / 95.38 | (94.98) / 95.64 | (95.44) / 95.36 | (95.09) / 95.40
-| BERTurk, 1.9M steps (base, cased)        | (96.82) / 97.05 | (96.96) / 96.81 | (96.89) / 96.88 | (96.95) / 97.06 | (96.76) / 96.84 | (96.88) / 96.93
-| BERTurk, 1.8M steps (base, uncased)      | (96.99) / 97.00 | (96.90) / 96.82 | (96.88) / 96.90 | (96.91) / 96.92 | (96.99) / 97.10 | (96.93) / 96.95
-| BERTurk-128k, 1.8M steps (base, cased)   | (96.55) / 96.86 | (96.51) / 96.99 | (96.74) / 97.15 | (96.45) / 96.83 | (96.48) / 97.05 | (96.55) / **96.98**
-| BERTurk-128k, 2M steps (base, uncased)   | (96.78) / 96.91 | (96.69) / 96.96 | (96.70) / 96.99 | (96.86) / 96.83 | (97.01) / 96.93 | (96.81) / 96.92
-| DistilBERTurk (base, cased)              | (96.19) / 96.14 | (96.11) / 96.19 | (96.13) / 96.44 | (96.18) / 96.18 | (96.08) / 96.26 | (96.14) / 96.24
+| Model                  | Run 1             | Run 2             | Run 3             | Run 4             | Run 5             | Avg.
+| ---------------------- | ----------------- | ----------------- | ----------------- | ----------------- | ----------------- | ---------------------
+| ELECTRA small          | (0.9567) / 0.9584 | (0.9578) / 0.9589 | (0.9564) / 0.9591 | (0.9544) / 0.9585 | (0.9545) / 0.9582 | (0.9560) / 0.9586
+| ELECTRA base           | (0.9707) / 0.9734 | (0.9710) / 0.9734 | (0.9712) / 0.9745 | (0.9728) / 0.9719 | (0.9711) / 0.9727 | (0.9714) / **0.9732**
+| mBERT                  | (0.9573) / 0.9580 | (0.9554) / 0.9584 | (0.9556) / 0.9591 | (0.9594) / 0.9572 | (0.9580) / 0.9586 | (0.9571) / 0.9583
+| BERTurk (32k)          | (0.9701) / 0.9712 | (0.9731) / 0.9717 | (0.9728) / 0.9730 | (0.9719) / 0.9729 | (0.9728) / 0.9708 | (0.9722) / 0.9719
+| BERTurk (128k)         | (0.9707) / 0.9732 | (0.9716) / 0.9712 | (0.9702) / 0.9722 | (0.9675) / 0.9715 | (0.9711) / 0.9729 | (0.9703) / 0.9722
+| BERTurk uncased (32k)  | (0.9707) / 0.9703 | (0.9711) / 0.9713 | (0.9715) / 0.9705 | (0.9717) / 0.9719 | (0.9718) / 0.9697 | (0.9714) / 0.9707
+| BERTurk uncased (128k) | (0.9716) / 0.9726 | (0.9715) / 0.9710 | (0.9704) / 0.9720 | (0.9715) / 0.9702 | (0.9704) / 0.9693 | (0.9711) / 0.9710
+| DistilBERTurk          | (0.9648) / 0.9654 | (0.9649) / 0.9642 | (0.9654) / 0.9660 | (0.9646) / 0.9650 | (0.9637) / 0.9642 | (0.9646) / 0.9650
+| XLM-RoBERTa            | (0.9611) / 0.9620 | (0.9629) / 0.9623 | (0.9617) / 0.9602 | (0.9602) / 0.9618 | (0.9614) / 0.9629 | (0.9614) / 0.9619
 
 ## NER
 
 NER dataset is similar to the one used in [this paper](https://www.aclweb.org/anthology/P11-3019/).
 We converted the dataset into CoNLL-like format and used a 80/10/10 training, development and test split.
- Result on development set is reported in brackets.
+Result on development set is reported in brackets.
 
-| Model                                    | Run 1           | Run 2           | Run 3           | Run 4           | Run 5           | Avg.
-| ---------------------------------------- | --------------- | --------------- | --------------- | --------------- | --------------- | -------------------
-| mBERT (base, cased)                      | (93.51) / 93.79 | (93.63) / 93.44 | (94.11) / 93.67 | (93.95) / 93.40 | (94.08) / 93.76 | (93.86) / 93.61
-| XLM-R (large, cased)                     | (94.86) / 94.51 | (94.79) / 94.08 | (94.57) / 94.32 | (94.91) / 94.09 | (94.97) / 94.47 | (94.82) / 94.29
-| BERTurk, 1.9M steps (base, cased)        | (95.12) / 94.80 | (95.07) / 95.00 | (95.33) / 94.69 | (95.03) / 94.87 | (95.22) / 94.91 | (95.15) / 94.85
-| BERTurk, 1.8M steps (base, uncased)      | (94.82) / 94.62 | (95.02) / 94.62 | (94.69) / 94.81 | (95.02) / 94.52 | (95.07) / 94.63 | (94.92) / 94.64
-| BERTurk-128k, 1.8M steps (base, cased)   | (95.07) / 95.41 | (95.47) / 95.30 | (95.35) / 95.35 | (94.74) / 95.20 | (95.17) / 95.23 | (95.16) / **95.30**
-| BERTurk-128k, 2M steps (base, uncased)   | (94.73) / 94.85 | (94.77) / 94.95 | (94.68) / 94.62 | (94.47) / 94.93 | (94.86) / 94.76 | (94.70) / 94.83
-| DistilBERTurk (base, cased)              | (99.56) / 93.26 | (92.01) / 93.26 | (88.15) / 93.04 | (92.50) / 92.97 | (91.20) / 93.30 | (92.68) / 93.17
+| Model                  | Run 1             | Run 2             | Run 3             | Run 4             | Run 5             | Avg.
+| ---------------------- | ----------------- | ----------------- | ----------------- | ----------------- | ----------------- | ---------------------
+| ELECTRA small          | (0.9447) / 0.9468 | (0.9421) / 0.9439 | (0.9421) / 0.9471 | (0.9428) / 0.9434 | (0.9439) / 0.9447 | (0.9431) / 0.9452
+| ELECTRA base           | (0.9564) / 0.9566 | (0.9552) / 0.9557 | (0.9579) / 0.9567 | (0.9563) / 0.9570 | (0.9568) / 0.9577 | (0.9565) / **0.9567**
+| mBERT                  | (0.9441) / 0.9420 | (0.9448) / 0.9421 | (0.9439) / 0.9421 | (0.9444) / 0.9421 | (0.9434) / 0.9436 | (0.9441) / 0.9424
+| BERTurk (32k)          | (0.9574) / 0.9550 | (0.9534) / 0.9552 | (0.9539) / 0.9570 | (0.9550) / 0.9543 | (0.9594) / 0.9531 | (0.9558) / 0.9549
+| BERTurk (128k)         | (0.9479) / 0.9494 | (0.9569) / 0.9599 | (0.9546) / 0.9571 | (0.9549) / 0.9579 | (0.9557) / 0.9534 | (0.9540) / 0.9555
+| BERTurk uncased (32k)  | (0.9529) / 0.9511 | (0.9531) / 0.9520 | (0.9533) / 0.9543 | (0.9530) / 0.9522 | (0.9523) / 0.9511 | (0.9529) / 0.9521
+| BERTurk uncased (128k) | (0.9512) / 0.9531 | (0.9502) / 0.9518 | (0.9517) / 0.9520 | (0.9513) / 0.9525 | (0.9530) / 0.9546 | (0.9515) / 0.9528
+| DistilBERTurk          | (0.9418) / 0.9392 | (0.9411) / 0.9415 | (0.9382) / 0.9400 | (0.9411) / 0.9427 | (0.9417) / 0.9427 | (0.9408) / 0.9412
+| XLM-RoBERTa            | (0.9536) / 0.9541 | (0.9517) / 0.9521 | (0.9527) / 0.9530 | (0.9493) / 0.9530 | (0.9529) / 0.9516 | (0.9520) / 0.9527
+
+# Model usage
+
+All trained models can be used from the [DBMDZ](https://github.com/dbmdz) Hugging Face [model hub page](https://huggingface.co/dbmdz)
+using their model name. The following models are available:
+
+* *BERTurk* models with 32k vocabulary: `dbmdz/bert-base-turkish-cased` and `dbmdz/bert-base-turkish-uncased`
+* *BERTurk* models with 128k vocabulary: `dbmdz/bert-base-turkish-128k-cased` and `dbmdz/bert-base-turkish-128k-uncased`
+* *ELECTRA* small and base cased models (discriminator): `dbmdz/electra-small-turkish-cased-discriminator` and `dbmdz/electra-base-turkish-cased-discriminator`
+
+
+Example usage with 🤗/Transformers:
+
+```python
+tokenizer = AutoTokenizer.from_pretrained("dbmdz/bert-base-turkish-cased")
+
+model = AutoModel.from_pretrained("dbmdz/bert-base-turkish-cased")
+```
+
+This loads the *BERTurk* cased model. The recently introduced ELEC**TR**A base model can be loaded with:
+
+```python
+tokenizer = AutoTokenizer.from_pretrained("dbmdz/electra-base-turkish-cased-discriminator")
+
+model = AutoModelWithLMHead.from_pretrained("dbmdz/electra-base-turkish-cased-discriminator")
+```
 
 # Citation
 
