@@ -67,6 +67,15 @@ We report averaged Accuracy (PoS tagging) and F-Score (NER) on 5 runs (initializ
 *BERTurk* and ELECTRA model checkpoint selection: We evaluated 5 different checkpoints for our cased and uncased models based on
 the development score for PoS tagging and NER. The model with the best results is used for the final and released model.
 
+Evaluation is done with the Hugging Face Transformers library and the [token classification](https://github.com/huggingface/transformers/tree/master/examples/token-classification)
+example script `run_ner.py`. We use the following hyper-parameters:
+
+| Parameter       | Value
+| --------------- | -----
+| `batch_size`    | 16
+| `learning_rate` | 5e-5
+| `num_epochs`    | 10
+
 ## PoS tagging
 
 The Turkish [IMST dataset](https://github.com/UniversalDependencies/UD_Turkish-IMST) 
