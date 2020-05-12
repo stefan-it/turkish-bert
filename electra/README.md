@@ -81,7 +81,7 @@ Results for the best checkpoints (Development set results in brackets):
 
 The following figures shows evaluation on NER dataset:
 
-![ELECTRA small - NER](figures/electra-base-ner.png)
+![ELECTRA base - NER](figures/electra-base-ner.png)
 
 Results for the best checkpoints (Development set results in brackets):
 
@@ -123,23 +123,3 @@ Loss curve for each checkpoint step for small model:
 And the loss curve for each checkpoint for the base model:
 
 ![ELECTRA base - loss](figures/electra-base-loss.png)
-
-# Comparison with other models
-
-In this section comparisons with other models like multi-lingual BERT, BERTurk or XLM-RoBERTa are performed for
-PoS Tagging and NER.
-
-We report averaged F1-score (NER) or accuracy (PoS tagging) over 5 runs with different seeds. Results on development
-set are in brackets.
-
-## PoS Tagging
-
-| Model          | Run 1             | Run 2             | Run 3             | Run 4             | Run 5             | Avg.
-| -------------- | ----------------- | ----------------- | ----------------- | ----------------- | ----------------- | ---------------------
-| ELECTRA small  | (0.9567) / 0.9584 | (0.9578) / 0.9589 | (0.9564) / 0.9591 | (0.9544) / 0.9585 | (0.9545) / 0.9582 | (0.9560) / 0.9586
-| ELECTRA base   | (0.9707) / 0.9734 | (0.9710) / 0.9734 | (0.9712) / 0.9745 | (0.9728) / 0.9719 | (0.9711) / 0.9727 | (0.9714) / **0.9732**
-| mBERT          | (0.9573) / 0.9580 | (0.9554) / 0.9584 | (0.9556) / 0.9591 | (0.9594) / 0.9572 | (0.9580) / 0.9586 | (0.9571) / 0.9583
-| BERTurk (32k)  | (0.9701) / 0.9712 | (0.9731) / 0.9717 | (0.9728) / 0.9730 | (0.9719) / 0.9729 | (0.9728) / 0.9708 | (0.9722) / 0.9719
-| BERTurk (128k) | (0.9707) / 0.9732 | (0.9716) / 0.9712 | (0.9702) / 0.9722 | (0.9675) / 0.9715 | (0.9711) / 0.9729 | (0.9703) / 0.9722
-| DistilBERTurk  | (0.9648) / 0.9654 | (0.9649) / 0.9642 | (0.9654) / 0.9660 | (0.9646) / 0.9650 | (0.9637) / 0.9642 | (0.9646) / 0.9650
-| XLM-RoBERTa    | (0.9611) / 0.9620 | (0.9629) / 0.9623 | (0.9617) / 0.9602 | (0.9602) / 0.9618 | (0.9614) / 0.9629 | (0.9614) / 0.9619
