@@ -9,7 +9,7 @@ awesome Turkish NLP community, as well as the decision for the model name: BERTu
 
 # Changelog
 
-* 12.05.2020: Release of ELECTRA (small and base) models, see [here](electra/README.md)
+* 12.05.2020: Release of ELEC**TR**A (small and base) models, see [here](electra/README.md)
 * 25.03.2020: Release of *BERTurk* uncased model and *BERTurk* models with larger vocab size (128k, cased and uncased)
 * 11.03.2020: Release of the cased distilled *BERTurk* model: *DistilBERTurk*.
               Available on the [Hugging Face model hub](https://huggingface.co/dbmdz/distilbert-base-turkish-cased)
@@ -55,7 +55,7 @@ paper by Sanh et al. (2019).
 
 # ELECTRA
 
-In addition to the *BERTurk* models, we also trained ELECTRA small and base models. A detailed overview can be found
+In addition to the *BERTurk* models, we also trained ELEC**TR**A small and base models. A detailed overview can be found
 in the [ELECTRA section](electra/README.md).
 
 # Evaluation
@@ -103,6 +103,32 @@ Result on development set is reported in brackets.
 | BERTurk uncased (128k) | (0.9512) / 0.9531 | (0.9502) / 0.9518 | (0.9517) / 0.9520 | (0.9513) / 0.9525 | (0.9530) / 0.9546 | (0.9515) / 0.9528
 | DistilBERTurk          | (0.9418) / 0.9392 | (0.9411) / 0.9415 | (0.9382) / 0.9400 | (0.9411) / 0.9427 | (0.9417) / 0.9427 | (0.9408) / 0.9412
 | XLM-RoBERTa            | (0.9536) / 0.9541 | (0.9517) / 0.9521 | (0.9527) / 0.9530 | (0.9493) / 0.9530 | (0.9529) / 0.9516 | (0.9520) / 0.9527
+
+# Model usage
+
+All trained models can be used from the [DBMDZ](https://github.com/dbmdz) Hugging Face [model hub page](https://huggingface.co/dbmdz)
+using their model name. The following models are available:
+
+* *BERTurk* models with 32k vocabulary: `dbmdz/bert-base-turkish-cased` and `dbmdz/bert-base-turkish-uncased`
+* *BERTurk* models with 128k vocabulary: `dbmdz/bert-base-turkish-128k-cased` and `dbmdz/bert-base-turkish-128k-uncased`
+* *ELECTRA* small and base cased models (discriminator): `dbmdz/electra-small-turkish-cased-discriminator` and `dbmdz/electra-base-turkish-cased-discriminator`
+
+
+Example usage with 🤗/Transformers:
+
+```python
+tokenizer = AutoTokenizer.from_pretrained("dbmdz/bert-base-turkish-cased")
+
+model = AutoModel.from_pretrained("dbmdz/bert-base-turkish-cased")
+```
+
+This loads the *BERTurk* cased model. The recently introduced ELEC**TR**A base model can be loaded with:
+
+```python
+tokenizer = AutoTokenizer.from_pretrained("dbmdz/electra-base-turkish-cased-discriminator")
+
+model = AutoModelWithLMHead.from_pretrained("dbmdz/electra-base-turkish-cased-discriminator")
+```
 
 # Citation
 
