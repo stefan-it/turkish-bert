@@ -1,6 +1,6 @@
 # Turkish ELECTRA models
 
-We release small and base ELECTRA models for Turkish, that were trained on the same data as *BERTurk*.
+We release small and base ELEC**TR**A models for Turkish, that were trained on the same data as *BERTurk*.
 
 > ELECTRA is a new method for self-supervised language representation learning. It can be used to
 > pre-train transformer networks using relatively little compute. ELECTRA models are trained to
