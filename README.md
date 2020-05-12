@@ -9,13 +9,14 @@ awesome Turkish NLP community, as well as the decision for the BERT model name: 
 
 # Changelog
 
-* 12.05.2020: Release of ELEC**TR**A (small and base) models, see [here](electra/README.md)
-* 25.03.2020: Release of *BERTurk* uncased model and *BERTurk* models with larger vocab size (128k, cased and uncased)
+* 12.05.2020: Release of ELEC**TR**A ([small](https://huggingface.co/dbmdz/electra-small-turkish-cased-discriminator) 
+              and [base](https://huggingface.co/dbmdz/electra-base-turkish-cased-discriminator)) models, see [here](electra/README.md).
+* 25.03.2020: Release of *BERTurk* uncased model and *BERTurk* models with larger vocab size (128k, cased and uncased).
 * 11.03.2020: Release of the cased distilled *BERTurk* model: *DistilBERTurk*.
               Available on the [Hugging Face model hub](https://huggingface.co/dbmdz/distilbert-base-turkish-cased)
 * 17.02.2020: Release of the cased *BERTurk* model.
               Available on the [Hugging Face model hub](https://huggingface.co/dbmdz/bert-base-turkish-cased)
-* 10.02.2020: Training corpus update, new TensorBoard links, new results for cased model
+* 10.02.2020: Training corpus update, new TensorBoard links, new results for cased model.
 * 02.02.2020: Initial version of this repo.
 
 # Stats
