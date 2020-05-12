@@ -2,10 +2,10 @@
 
 [![DOI](https://zenodo.org/badge/237817454.svg)](https://zenodo.org/badge/latestdoi/237817454)
 
-We present community-driven cased and uncased models BERT models for Turkish 🎉
+We present community-driven BERT and ELECTRA models for Turkish 🎉
 
 Some datasets used for pretraining and evaluation are contributed from the
-awesome Turkish NLP community, as well as the decision for the model name: BERTurk.
+awesome Turkish NLP community, as well as the decision for the BERT model name: BERTurk.
 
 # Changelog
 
