@@ -2,7 +2,7 @@
 
 [![DOI](https://zenodo.org/badge/237817454.svg)](https://zenodo.org/badge/latestdoi/237817454)
 
-We present community-driven BERT and ELECTRA models for Turkish 🎉
+We present community-driven BERT, DistilBERT, ELECTRA and ConvBERT models for Turkish 🎉
 
 Some datasets used for pretraining and evaluation are contributed from the
 awesome Turkish NLP community, as well as the decision for the BERT model name: BERTurk.
@@ -89,6 +89,10 @@ The script `train_flert_model.py` in this repository can be used to fine-tune mo
 
 We pre-train models with 5 different seeds and reported averaged accuracy (PoS tagging), F1-score (NER) or EM/F1 (Question answering).
 
+For some downstream tasks, we perform "Almost Stochastic Order" tests as proposed in the
+["Deep Dominance - How to Properly Compare Deep Neural Models"](https://www.aclweb.org/anthology/P19-1266/) paper.
+The heatmap figures are heavily inspired by the ["CharacterBERT"](https://arxiv.org/abs/2010.10392) paper.
+
 ## PoS tagging
 
 We use two different PoS Tagging datasets for Turkish from the Universal Dependencies project:
@@ -116,6 +120,10 @@ We use the `dev` branch for training/dev/test splits.
 ![UD IMST Development Results - PoS tagging](figures/ud_imst_dev.png)
 
 ![UD IMST Test Results - PoS tagging](figures/ud_imst_test.png)
+
+Almost Stochastic Order tests (using the default alpha of 0.05) on test set:
+
+![UD IMST Almost Stochastic Order tests - Test set](figures/ud_imst_asd.png)
 
 ### Evaluation on BOUN dataset
 
@@ -191,7 +199,7 @@ using their model name. The following models are available:
 * *BERTurk* models with 32k vocabulary: `dbmdz/bert-base-turkish-cased` and `dbmdz/bert-base-turkish-uncased`
 * *BERTurk* models with 128k vocabulary: `dbmdz/bert-base-turkish-128k-cased` and `dbmdz/bert-base-turkish-128k-uncased`
 * *ELECTRA* small and base cased models (discriminator): `dbmdz/electra-small-turkish-cased-discriminator` and `dbmdz/electra-base-turkish-cased-discriminator`
-* *ConvBERTurk* model with 32k vocabulary: `https://huggingface.co/dbmdz/convbert-base-turkish-cased`
+* *ConvBERTurk* model with 32k vocabulary: `dbmdz/convbert-base-turkish-cased`
 
 Example usage with 🤗/Transformers:
 
