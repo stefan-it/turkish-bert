@@ -9,7 +9,7 @@ awesome Turkish NLP community, as well as the decision for the BERT model name: 
 
 # Changelog
 
-* 13.03.2021: Release of *ConvBERTurk* model and more evaluations on different downstream tasks.
+* 16.03.2021: Release of *ConvBERTurk* model and more evaluations on different downstream tasks.
 * 12.05.2020: Release of ELEC**TR**A ([small](https://huggingface.co/dbmdz/electra-small-turkish-cased-discriminator) 
               and [base](https://huggingface.co/dbmdz/electra-base-turkish-cased-discriminator)) models, see [here](electra/README.md).
 * 25.03.2020: Release of *BERTurk* uncased model and *BERTurk* models with larger vocab size (128k, cased and uncased).
