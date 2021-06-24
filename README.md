@@ -1,6 +1,8 @@
 # 🇹🇷 BERTurk
 
-<img align="left" src="https://raw.githubusercontent.com/stefan-it/turkish-bert/updates/merve_logo.png">
+<p align="center">
+  <img src="https://raw.githubusercontent.com/stefan-it/turkish-bert/updates/merve_logo.png">
+</p>
 
 [![DOI](https://zenodo.org/badge/237817454.svg)](https://zenodo.org/badge/latestdoi/237817454)
 
