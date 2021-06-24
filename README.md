@@ -11,9 +11,11 @@ We present community-driven BERT, DistilBERT, ELECTRA and ConvBERT models for Tu
 Some datasets used for pretraining and evaluation are contributed from the
 awesome Turkish NLP community, as well as the decision for the BERT model name: BERTurk.
 
+Logo is provided by [Merve Noyan](https://twitter.com/mervenoyann).
+
 # Changelog
 
-* 24.06.2021: Release of new ELECTRA model, trained on mC4 dataset, repository got new awesome logo from  Merve Noyan.
+* 24.06.2021: Release of new ELECTRA model, trained on mC4 dataset, repository got new awesome logo from Merve Noyan.
 * 16.03.2021: Release of *ConvBERTurk* model and more evaluations on different downstream tasks.
 * 12.05.2020: Release of ELEC**TR**A ([small](https://huggingface.co/dbmdz/electra-small-turkish-cased-discriminator) 
               and [base](https://huggingface.co/dbmdz/electra-base-turkish-cased-discriminator)) models, see [here](electra/README.md).
