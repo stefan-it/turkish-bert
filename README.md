@@ -82,6 +82,8 @@ in the ["ConvBERT: Improving BERT with Span-based Dynamic Convolution"](https://
 We follow a different training procedure: instead of using a two-phase approach, that pre-trains the model for 90% with 128
 sequence length and 10% with 512 sequence length, we pre-train the model with 512 sequence length for 1M steps on a v3-32 TPU.
 
+More details about the pre-training can be found [here](convbert/README.md).
+
 # mC4 ELECTRA
 
 In addition to the ELEC**TR**A base model, we also trained an ELECTRA model on the Turkish part of the mC4 corpus. We use a
