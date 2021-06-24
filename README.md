@@ -15,7 +15,7 @@ Logo is provided by [Merve Noyan](https://twitter.com/mervenoyann).
 
 # Changelog
 
-* 24.06.2021: Release of new ELECTRA model, trained on mC4 dataset, repository got new awesome logo from Merve Noyan.
+* 24.06.2021: Release of new ELECTRA model, trained on Turkish part of mC4 dataset. Repository got new awesome logo from Merve Noyan.
 * 16.03.2021: Release of *ConvBERTurk* model and more evaluations on different downstream tasks.
 * 12.05.2020: Release of ELEC**TR**A ([small](https://huggingface.co/dbmdz/electra-small-turkish-cased-discriminator) 
               and [base](https://huggingface.co/dbmdz/electra-base-turkish-cased-discriminator)) models, see [here](electra/README.md).
@@ -52,7 +52,8 @@ A detailed cheatsheet of how the models were trained, can be found [here](CHEATS
 We've also trained an ELECTRA (cased) model on the recently released Turkish part of the
 [multiligual C4 (mC4) corpus](https://github.com/allenai/allennlp/discussions/5265) from the AI2 team.
 
-After filtering documents with a broken encoding, the training corpus has a size of 242GB resulting in tokens.
+After filtering documents with a broken encoding, the training corpus has a size of 242GB resulting
+in 31,240,963,926 tokens.
 
 We used the original 32k vocab (instead of creating a new one).
 
