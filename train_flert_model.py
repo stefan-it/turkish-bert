@@ -86,6 +86,7 @@ if __name__ == "__main__":
             embeddings_storage_mode='none',
             weight_decay=0.,
             train_with_dev=False,
+            use_final_model_for_eval=True
         )
 
 
