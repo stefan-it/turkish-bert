@@ -1,7 +1,7 @@
 # 🇹🇷 BERTurk
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/stefan-it/turkish-bert/updates/merve_logo.png">
+  <img alt="Logo provided by Merve Noyan" title="Awesome logo from Merve Noyan" src="https://raw.githubusercontent.com/stefan-it/turkish-bert/updates/merve_logo.png">
 </p>
 
 [![DOI](https://zenodo.org/badge/237817454.svg)](https://zenodo.org/badge/latestdoi/237817454)
