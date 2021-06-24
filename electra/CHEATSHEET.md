@@ -54,3 +54,55 @@ python3 run_pretraining.py --data-dir gs://tr-electra --model-name electra-base-
 
 We train both small and base models for 1M steps on a v3-8 TPU. Training a small model took ~9 hours,
 base model took ~8 days.
+
+# mC4 dataset
+
+We use the Turkish part of the multilingual C4 dataset, that was recently released by the awesome AI2 team.
+
+To download only the Turkish part of the dataset, just run:
+
+```bash
+GIT_LFS_SKIP_SMUDGE=1 git clone https://huggingface.co/datasets/allenai/c4
+cd c4
+git lfs pull --include "multilingual/c4-tr.*.json.gz"
+```
+
+We then extract the archive, parse the JSONL-like format, fix encoding errors and perform sentence
+splitting - in just one script (`tr-extractor.py`):
+
+```python
+import json
+import gzip
+import sys
+
+from nltk.tokenize import sent_tokenize
+
+filename = sys.argv[1]
+out_filename = sys.argv[2]
+
+f_out = open(out_filename, "wt")
+
+with gzip.open(filename, "rt") as f_p:
+    for line in f_p:
+        data = json.loads(line)
+
+        text = data["text"]
+
+        if "text" in data and "�" not in data["text"]:
+            for sentence in sent_tokenize(text, "turkish"):
+                f_out.write(sentence + "\n")
+```
+
+We use NLTK as sentence splitter, because it is way faster than spacy.
+
+You can run this script in a "real" multi-threaded scenario, using `find` and `xargs`:
+
+```bash
+find . -iname "c4-tr.tfrecord*" -type f | xargs -I % -P 32 -n 1 python3 tr-extractor.py % ../%.extracted
+```
+
+Then the `*.extracted` files can be moved into a `corpus` folder in order to use it with the
+`build_pretraining_dataset.py` script as shown in the previous sections of this readme.
+
+The model was trained on a v3-32 TPU with a sequence length of 512 for 1M steps. Training took
+around 3.5 days.
