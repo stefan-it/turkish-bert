@@ -5,7 +5,7 @@ We use the same pre-training data as for training the Turkish ELECTRA model.
 The detailed procedure can be found in the ELECTRA
 [cheatsheet](../electra/CHEATSHEET.md).
 
-In `configure_pretraining.py`() we provide the configuration file, that was
+In [`configure_pretraining.py`](configure_pretraining.py) we provide the configuration file, that was
 used for training the ConvBERT model using the official implementation. It
 can simply be replaced with the original `configure_pretraining.py` script.
 
