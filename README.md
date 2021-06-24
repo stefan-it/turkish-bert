@@ -198,14 +198,14 @@ and report EM and F1-Score on the development set (as reported from Transformers
 
 | Model                   | Development EM       | Development F1-score
 | ----------------------- | -------------------- | --------------------
-| BERTurk (cased, 128k)   | 60.38 ± 0.61     | **78.21** ± 0.24
+| BERTurk (cased, 128k)   | 60.38 ± 0.61         | **78.21** ± 0.24
 | BERTurk (cased, 32k)    | 58.79 ± 0.81         | 76.70 ± 1.04
 | BERTurk (uncased, 128k) | 59.60 ± 1.02         | 77.24 ± 0.59
 | BERTurk (uncased, 32k)  | 58.92 ± 1.06         | 76.22 ± 0.42
 | ConvBERTurk             | 60.11 ± 0.72         | 77.64 ± 0.59
 | DistilBERTurk           | 43.52 ± 1.63         | 62.56 ± 1.44
 | ELECTRA Base            | 59.24 ± 0.70         | 77.70 ± 0.51
-| ELECTRA Base mC4        | **61.28** ± 0.94         | 78.17 ± 0.33
+| ELECTRA Base mC4        | **61.28** ± 0.94     | 78.17 ± 0.33
 | ELECTRA Small           | 38.05 ± 1.83         | 57.79 ± 1.22
 | XLM-R (base)            | 58.27 ± 0.53         | 76.80 ± 0.39
 | mBERT (cased)           | 56.70 ± 0.43         | 75.20 ± 0.61
