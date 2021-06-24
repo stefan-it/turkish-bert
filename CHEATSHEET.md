@@ -296,3 +296,5 @@ python3 run_pretraining.py --input_file=gs://trbert/uncased_tfrecords/*.tfrecord
 
 This will train cased and uncased models for 3M steps. Checkpoints are saved
 after 100k steps. The last 20 checkpoints will be kept.
+
+**Notice**: Due to a training command mistake, the uncased model was only trained for 2M steps.
