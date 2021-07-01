@@ -298,3 +298,5 @@ This will train cased and uncased models for 3M steps. Checkpoints are saved
 after 100k steps. The last 20 checkpoints will be kept.
 
 **Notice**: Due to a training command mistake, the uncased model was only trained for 2M steps.
+
+Both cased and uncased models with a vocab size of 128k were trained for 2M steps.
