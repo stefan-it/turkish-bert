@@ -1,5 +1,10 @@
 # 🇹🇷 BERTurk
 
+<p>
+<a href="https://console.tiyaro.ai/explore?q=dbmdz/bert-base-italian-&pub=dbmdz"> <img src="https://tiyaro-public-docs.s3.us-west-2.amazonaws.com/assets/try_on_tiyaro_badge.svg"></a>
+</p>
+
+
 <p align="center">
   <img alt="Logo provided by Merve Noyan" title="Awesome logo from Merve Noyan" src="https://raw.githubusercontent.com/stefan-it/turkish-bert/master/merve_logo.png">
 </p>
