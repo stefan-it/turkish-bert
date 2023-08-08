@@ -6,6 +6,7 @@ from flair.datasets import UniversalDependenciesCorpus, XTREME
 from flair.embeddings import TransformerWordEmbeddings
 from flair.models import SequenceTagger
 from flair.trainers import ModelTrainer
+from torch.optim.lr_scheduler import OneCycleLR
 
 if __name__ == "__main__":
 
@@ -74,8 +75,7 @@ if __name__ == "__main__":
         output_folder = f"flert-{args.dataset}-{hf_model}-{seed}"
 
         # train with XLM parameters (AdamW, 20 epochs, small LR)
-        from torch.optim.lr_scheduler import OneCycleLR
-
+        
         trainer.train(
             output_folder,
             learning_rate=5.0e-5,
