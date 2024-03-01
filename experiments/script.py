@@ -80,12 +80,12 @@ for seed in seeds:
                         api.upload_file(
                             path_or_fileobj=f"{output_path}/{best_model_name}",
                             path_in_repo="./pytorch_model.bin",
-                            repo_id=f"{hf_hub_org_name}/{repo_name}",
+                            repo_id=f"{hf_hub_org_name}/{output_path}",
                             repo_type="model"
                         )
                         api.upload_file(
                             path_or_fileobj=f"{output_path}/training.log",
                             path_in_repo="./training.log",
-                            repo_id=f"{hf_hub_org_name}/{repo_name}",
+                            repo_id=f"{hf_hub_org_name}/{output_path}",
                             repo_type="model"
                         )
