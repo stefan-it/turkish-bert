@@ -6,6 +6,7 @@ from experiment import ExperimentConfiguration, run_experiment
 
 from huggingface_hub import login, HfApi
 
+from pathlib import Path
 
 # Hugging Face Model Hub configuration
 config_file     = os.environ.get("CONFIG")
