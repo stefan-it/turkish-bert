@@ -1,0 +1,33 @@
+{
+    "batch_sizes": [
+        8,
+        16
+    ],
+    "learning_rates": [
+        3e-05,
+        5e-05
+    ],
+    "epochs": [
+        10
+    ],
+    "context_sizes": [
+        0
+    ],
+    "seeds": [
+        1,
+        2,
+        3,
+        4,
+        5
+    ],
+    "layers": "-1",
+    "subword_poolings": [
+        "first"
+    ],
+    "use_crf": false,
+    "use_tensorboard": true,
+    "hf_model": "boun-tabi-LMG/TURNA",
+    "model_short_name": "turna",
+    "dataset_name": "pos/UD_Turkish-IMST",
+    "cuda": "0"
+}
