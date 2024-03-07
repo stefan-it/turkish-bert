@@ -103,7 +103,7 @@ def run_experiment(experiment_configuration: ExperimentConfiguration) -> str:
     main_evaluation_metric = ("micro avg", "f1-score")
 
     if task_name == "pos":
-         main_evaluation_metric = ("micro avg", "accuracy")
+         main_evaluation_metric = ("micro avg", "acc")
 
     trainer.fine_tune(
         output_path,
