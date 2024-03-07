@@ -12,6 +12,8 @@ from flair.trainers.plugins.loggers.tensorboard import TensorboardLogger
 
 from pathlib import Path
 
+from ud_datasets import UD_TURKISH_MAPPING, UD_TURKISH_REVISION_MAPPING, UD_GENERIC
+
 logger = logging.getLogger("flair")
 logger.setLevel(level="INFO")
 
@@ -43,6 +45,12 @@ def run_experiment(experiment_configuration: ExperimentConfiguration) -> str:
 
     if task_name == "pos":
         label_type = "upos"
+
+        ud_dataset = dataset_name
+        ud_dataset_prefix = UD_TURKISH_MAPPING[ud_dataset]
+        ud_dataset_revision = UD_TURKISH_REVISION_MAPPING[ud_dataset]
+
+        corpus = UD_GENERIC(ud_name=ud_dataset, ud_dataset_prefix=ud_dataset_prefix, revision=ud_dataset_revision)
     else:
         corpus = NER_MULTI_XTREME(languages="tr")
 
@@ -72,7 +80,7 @@ def run_experiment(experiment_configuration: ExperimentConfiguration) -> str:
     output_path_parts = [
         "flair",
         task_name,
-        dataset_name.replace("-", "_"),
+        dataset_name.replace("-", "_").lower(),
         experiment_configuration.base_model_short,
         f"bs{experiment_configuration.batch_size}",
         f"e{experiment_configuration.epoch}",
@@ -92,11 +100,17 @@ def run_experiment(experiment_configuration: ExperimentConfiguration) -> str:
 
         plugins.append(TensorboardLogger(log_dir=str(tb_path), comment=output_path))
 
+    main_evaluation_metric = ("micro avg", "f1-score")
+
+    if task_name == "pos":
+         main_evaluation_metric = ("micro avg", "accuracy"),
+
     trainer.fine_tune(
         output_path,
         learning_rate=experiment_configuration.learning_rate,
         mini_batch_size=experiment_configuration.batch_size,
         max_epochs=experiment_configuration.epoch,
+        main_evaluation_metric=main_evaluation_metric,
         shuffle=True,
         embeddings_storage_mode='none',
         weight_decay=0.,
