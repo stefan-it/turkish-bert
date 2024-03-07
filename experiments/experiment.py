@@ -100,17 +100,12 @@ def run_experiment(experiment_configuration: ExperimentConfiguration) -> str:
 
         plugins.append(TensorboardLogger(log_dir=str(tb_path), comment=output_path))
 
-    main_evaluation_metric = ("micro avg", "f1-score")
-
-    if task_name == "pos":
-         main_evaluation_metric = ("micro avg", "acc")
 
     trainer.fine_tune(
         output_path,
         learning_rate=experiment_configuration.learning_rate,
         mini_batch_size=experiment_configuration.batch_size,
         max_epochs=experiment_configuration.epoch,
-        main_evaluation_metric=main_evaluation_metric,
         shuffle=True,
         embeddings_storage_mode='none',
         weight_decay=0.,
