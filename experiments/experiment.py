@@ -4,13 +4,16 @@ from dataclasses import dataclass
 
 from flair import set_seed
 
-from flair.datasets import NER_MULTI_XTREME
+from flair.data import MultiCorpus
+from flair.datasets import  NER_MULTI_XTREME
 from flair.embeddings import TransformerWordEmbeddings
 from flair.models import SequenceTagger
 from flair.trainers import ModelTrainer
 from flair.trainers.plugins.loggers.tensorboard import TensorboardLogger
 
 from pathlib import Path
+
+from typing import List
 
 from ud_datasets import UD_TURKISH_MAPPING, UD_TURKISH_REVISION_MAPPING, UD_GENERIC
 
@@ -27,7 +30,8 @@ class ExperimentConfiguration:
     seed: int
     base_model: str
     base_model_short: str
-    dataset_name: str
+    task: str
+    datasets: List[str]
     layers: str = "-1"
     subtoken_pooling: str = "first"
     use_crf: bool = False
@@ -37,24 +41,34 @@ class ExperimentConfiguration:
 def run_experiment(experiment_configuration: ExperimentConfiguration) -> str:
     set_seed(experiment_configuration.seed)
 
-    task_name = experiment_configuration.dataset_name.split("/")[0]
-    dataset_name = experiment_configuration.dataset_name.split("/")[-1]
+    corpora = []
 
-    label_type = "ner"
-    corpus = None
+    label_type = experiment_configuration.task
 
-    if task_name == "pos":
+    if experiment_configuration.task == "pos":
         label_type = "upos"
 
-        ud_dataset = dataset_name
-        ud_dataset_prefix = UD_TURKISH_MAPPING[ud_dataset]
-        ud_dataset_revision = UD_TURKISH_REVISION_MAPPING[ud_dataset]
+        for dataset in experiment_configuration.datasets:
+            # E.g. UD_Turkish-Atis/tr_atis@765b19c20edd89124d2a295fc8b6a330bfd8cdc2
+            ud_dataset, ud_dataset_prefix = dataset.split("/")
+            ud_dataset_prefix, ud_dataset_revision = ud_dataset_prefix.split("@")
+            corpora.append(
+                UD_GENERIC(ud_name=ud_dataset, ud_dataset_prefix=ud_dataset_prefix, revision=ud_dataset_revision)
+            )
+    elif experiment_configuration.task == "ner":
+        label_type = "ner"
 
-        corpus = UD_GENERIC(ud_name=ud_dataset, ud_dataset_prefix=ud_dataset_prefix, revision=ud_dataset_revision)
-    else:
-        corpus = NER_MULTI_XTREME(languages="tr")
+        for dataset in experiment_configuration.datasets:
+            # E.g. xtreme/tr
+            loader, language = dataset.split("/")
+            if loader == "xtreme":
+                corpora.append(
+                    NER_MULTI_XTREME(languages=language)
+                )
 
-    label_dictionary = corpus.make_label_dictionary(label_type=label_type)
+    corpora: MultiCorpus = MultiCorpus(corpora=corpora, sample_missing_splits=False)
+
+    label_dictionary = corpora.make_label_dictionary(label_type=label_type)
     logger.info("Label Dictionary: {}".format(label_dictionary.get_items()))
 
     embeddings = TransformerWordEmbeddings(
@@ -75,12 +89,11 @@ def run_experiment(experiment_configuration: ExperimentConfiguration) -> str:
         reproject_embeddings=False,
     )
 
-    trainer = ModelTrainer(tagger, corpus)
+    trainer = ModelTrainer(tagger, corpora)
 
     output_path_parts = [
         "flair",
-        task_name,
-        dataset_name.replace("-", "_").lower(),
+        experiment_configuration.task,
         experiment_configuration.base_model_short,
         f"bs{experiment_configuration.batch_size}",
         f"e{experiment_configuration.epoch}",
