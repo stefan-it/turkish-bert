@@ -1,0 +1,27 @@
+batch_sizes:
+- 16
+- 8
+learning_rates:
+- 3.0e-05
+- 5.0e-05
+epochs:
+- 3
+context_sizes:
+- 0
+seeds:
+- 1
+- 2
+- 3
+- 4
+- 5
+layers: '-1'
+subword_poolings:
+- first
+use_crf: false
+use_tensorboard: true
+cuda: '0'
+task: ner
+datasets:
+- xtreme/tr
+hf_model: dbmdz/distilbert-base-turkish-cased
+model_short_name: distilberturk_cased
