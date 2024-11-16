@@ -15,7 +15,7 @@ from pathlib import Path
 
 from typing import List
 
-from ud_datasets import UD_TURKISH_MAPPING, UD_TURKISH_REVISION_MAPPING, UD_GENERIC
+from ud_datasets import UD_GENERIC
 
 logger = logging.getLogger("flair")
 logger.setLevel(level="INFO")
