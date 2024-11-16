@@ -67,6 +67,7 @@ model_mapping = {
     "electra_base_mc4cased":   "dbmdz/electra-base-turkish-mc4-cased-discriminator",
     "electra_base_mc4uncased": "dbmdz/electra-base-turkish-mc4-uncased-discriminator",
     "electra_small_cased":     "dbmdz/electra-small-turkish-cased-discriminator",
+    "takimlar_v1":             "stefan-it/takimlar-v1",
 }
 
 pos_datasets = {
