@@ -35,6 +35,7 @@ context_sizes      = conf.context_sizes
 hf_model           = conf.hf_model
 model_short_name   = conf.model_short_name
 task               = conf.task
+datasets           = conf.datasets
 use_tensorboard    = conf.use_tensorboard
 
 cuda = conf.cuda
@@ -56,6 +57,7 @@ for seed in seeds:
                             base_model=hf_model,
                             base_model_short=model_short_name,
                             task=task,
+                            datasets=datasets,
                             use_tensorboard=use_tensorboard,
                         )
                         output_path = run_experiment(experiment_configuration=experiment_configuration)
