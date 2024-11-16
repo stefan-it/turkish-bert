@@ -3,7 +3,7 @@ from pathlib import Path
 from omegaconf import OmegaConf
 
 
-dataset_template = \
+pos_dataset_template = \
     """
 batch_sizes:
   - 16
@@ -13,6 +13,32 @@ learning_rates:
   - !!float 5e-5
 epochs:
   - 3
+context_sizes:
+  - 0
+seeds:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+layers: "-1"
+subword_poolings:
+  - "first"
+use_crf: !!bool false
+use_tensorboard: !!bool true
+cuda: "0"
+"""
+
+ner_dataset_template = \
+    """
+batch_sizes:
+  - 16
+  - 8
+learning_rates:
+  - !!float 3e-5
+  - !!float 5e-5
+epochs:
+  - 10
 context_sizes:
   - 0
 seeds:
@@ -73,7 +99,7 @@ for model_short_name, model_name in model_mapping.items():
                 dataset_revision = metadata[1]
                 concatenated_pos_datasets.append(f"{pos_dataset_name}/{dataset_short_name}@{dataset_revision}")
 
-            conf = OmegaConf.create(dataset_template)
+            conf = OmegaConf.create(pos_dataset_template)
 
             conf["task"] = "pos"
             conf["datasets"] = concatenated_pos_datasets
@@ -84,6 +110,7 @@ for model_short_name, model_name in model_mapping.items():
                 OmegaConf.save(config=conf, f=f_out)
         elif task == "ner":
             for dataset_name, metadata in ner_datasets.items():
+                conf = OmegaConf.create(ner_dataset_template)
                 conf["task"] = "ner"
                 conf["datasets"] = [f"{metadata}"]
                 conf["hf_model"] = model_name
