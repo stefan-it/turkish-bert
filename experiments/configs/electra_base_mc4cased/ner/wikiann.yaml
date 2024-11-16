@@ -5,7 +5,7 @@ learning_rates:
 - 3.0e-05
 - 5.0e-05
 epochs:
-- 3
+- 10
 context_sizes:
 - 0
 seeds:
