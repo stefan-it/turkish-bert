@@ -55,6 +55,32 @@ use_tensorboard: !!bool true
 cuda: "0"
 """
 
+sentiment_dataset_template = \
+    """
+batch_sizes:
+  - 16
+  - 8
+learning_rates:
+  - !!float 3e-5
+  - !!float 5e-5
+epochs:
+  - 3
+context_sizes:
+  - 0
+seeds:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+layers: "-1"
+subword_poolings:
+  - "first"
+use_crf: !!bool false
+use_tensorboard: !!bool true
+cuda: "0"
+"""
+
 model_mapping = {
     "berturk_128k_cased":      "dbmdz/bert-base-turkish-128k-cased",
     "berturk_128k_uncased":    "dbmdz/bert-base-turkish-128k-uncased",
@@ -67,8 +93,6 @@ model_mapping = {
     "electra_base_mc4_cased":   "dbmdz/electra-base-turkish-mc4-cased-discriminator",
     "electra_base_mc4_uncased": "dbmdz/electra-base-turkish-mc4-uncased-discriminator",
     "electra_small_cased":     "dbmdz/electra-small-turkish-cased-discriminator",
-    "takimlar_v1":             "stefan-it/takimlar-v1",
-    "culturk_teams":           "stefan-it/culturk-teams",
 }
 
 pos_datasets = {
@@ -83,13 +107,17 @@ ner_datasets = {
     "wikiann": "xtreme/tr",
 }
 
+sentiment_datasets = {
+    "offenseval": "tr_2020"
+}
+
 for model_short_name, model_name in model_mapping.items():
     # Create model folder
     model_path = Path(f"./{model_short_name}")
     model_path.mkdir(parents=True, exist_ok=True)
 
     # Create subfolders for ner and pos
-    for task in ["pos", "ner"]:
+    for task in ["pos", "ner", "sentiment"]:
         task_path = model_path / task
         task_path.mkdir(parents=True, exist_ok=True)
 
@@ -115,6 +143,16 @@ for model_short_name, model_name in model_mapping.items():
                 conf = OmegaConf.create(ner_dataset_template)
                 conf["task"] = "ner"
                 conf["datasets"] = [f"{metadata}"]
+                conf["hf_model"] = model_name
+                conf["model_short_name"] = model_short_name
+
+                with open(str(task_path / f"{dataset_name}.yaml"), "wt") as f_out:
+                    OmegaConf.save(config=conf, f=f_out)
+        elif task == "sentiment":
+            for dataset_name, metadata in sentiment_datasets.items():
+                conf = OmegaConf.create(sentiment_dataset_template)
+                conf["task"] = "sentiment"
+                conf["datasets"] = [f"{dataset_name}/{metadata}"]
                 conf["hf_model"] = model_name
                 conf["model_short_name"] = model_short_name
 
