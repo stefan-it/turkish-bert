@@ -28,4 +28,4 @@ datasets:
 - UD_Turkish-IMST/tr_imst@cc03792f9d725991deb95514d2309b7eb7b3945b
 - UD_Turkish-Tourism/tr_tourism@4f9b9898ee9d262920ff36535f1a8bf0ef60a7c0
 hf_model: dbmdz/convbert-base-turkish-mc4-uncased
-model_short_name: convbert_base_mc4cased
+model_short_name: convbert_base_mc4_cased

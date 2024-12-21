@@ -24,4 +24,4 @@ task: ner
 datasets:
 - xtreme/tr
 hf_model: dbmdz/convbert-base-turkish-mc4-uncased
-model_short_name: convbert_base_mc4cased
+model_short_name: convbert_base_mc4_cased
