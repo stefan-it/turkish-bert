@@ -1,0 +1,27 @@
+batch_sizes:
+- 16
+- 8
+learning_rates:
+- 3.0e-05
+- 5.0e-05
+epochs:
+- 3
+context_sizes:
+- 0
+seeds:
+- 1
+- 2
+- 3
+- 4
+- 5
+layers: '-1'
+subword_poolings:
+- first
+use_crf: false
+use_tensorboard: true
+cuda: '0'
+task: sentiment
+datasets:
+- offenseval/tr_2020
+hf_model: dbmdz/electra-small-turkish-cased-discriminator
+model_short_name: electra_small_cased
