@@ -1,0 +1,31 @@
+batch_sizes:
+- 16
+- 8
+learning_rates:
+- 3.0e-05
+- 5.0e-05
+epochs:
+- 3
+context_sizes:
+- 0
+seeds:
+- 1
+- 2
+- 3
+- 4
+- 5
+layers: '-1'
+subword_poolings:
+- first
+use_crf: false
+use_tensorboard: true
+cuda: '0'
+task: pos
+datasets:
+- UD_Turkish-Atis/tr_atis@765b19c20edd89124d2a295fc8b6a330bfd8cdc2
+- UD_Turkish-BOUN/tr_boun@d1f2725233c17c188355004a252244c440db4c55
+- UD_Turkish-FrameNet/tr_framenet@36a9b3f719cb26e0313f77238fc3e94128f57e3b
+- UD_Turkish-IMST/tr_imst@cc03792f9d725991deb95514d2309b7eb7b3945b
+- UD_Turkish-Tourism/tr_tourism@4f9b9898ee9d262920ff36535f1a8bf0ef60a7c0
+hf_model: dbmdz/electra-base-turkish-mc4-uncased-discriminator
+model_short_name: electra_base_mc4_uncased
