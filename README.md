@@ -15,7 +15,7 @@ Logo is provided by [Merve Noyan](https://twitter.com/mervenoyann).
 
 # Changelog
 
-* 1x.12.2024: New evaluations with Flair are added.
+* 21.12.2024: New evaluations with Flair are added.
 * 23.09.2021: Release of uncased ELECTRA and ConvBERT models and cased ELECTRA model, all trained on mC4 corpus.
 * 24.06.2021: Release of new ELECTRA model, trained on Turkish part of mC4 dataset. Repository got new awesome logo from Merve Noyan.
 * 16.03.2021: Release of *ConvBERTurk* model and more evaluations on different downstream tasks.
@@ -29,7 +29,7 @@ Logo is provided by [Merve Noyan](https://twitter.com/mervenoyann).
 * 10.02.2020: Training corpus update, new TensorBoard links, new results for cased model.
 * 02.02.2020: Initial version of this repo.
 
-# Stats
+# Pretraining Corpora Stats
 
 The current version of the model is trained on a filtered and sentence
 segmented version of the Turkish [OSCAR corpus](https://traces1.inria.fr/oscar/),
@@ -63,20 +63,20 @@ We used the original 32k vocab (instead of creating a new one).
 
 Here's an overview of all available models, incl. their training corpus size:
 
-| Model name                 | Model hub link                                                                      | Pre-training corpus size
-| -------------------------- | ----------------------------------------------------------------------------------- | ------------------------
-| ELECTRA Small (cased)      | [here](https://huggingface.co/dbmdz/electra-small-turkish-cased-discriminator)      | 35GB
-| ELECTRA Base (cased)       | [here](https://huggingface.co/dbmdz/electra-base-turkish-cased-discriminator)       | 35GB
-| ELECTRA Base mC4 (cased)   | [here](https://huggingface.co/dbmdz/electra-base-turkish-mc4-cased-discriminator)   | 242GB
-| ELECTRA Base mC4 (uncased) | [here](https://huggingface.co/dbmdz/electra-base-turkish-mc4-uncased-discriminator) | 242GB
-| BERTurk (cased, 32k)       | [here](https://huggingface.co/dbmdz/bert-base-turkish-cased)                        | 35GB
-| BERTurk (uncased, 32k)     | [here](https://huggingface.co/dbmdz/bert-base-turkish-uncased)                      | 35GB
-| BERTurk (cased, 128k)      | [here](https://huggingface.co/dbmdz/bert-base-turkish-128k-cased)                   | 35GB
-| BERTurk (uncased, 128k)    | [here](https://huggingface.co/dbmdz/bert-base-turkish-128k-uncased)                 | 35GB
-| DistilBERTurk (cased)      | [here](https://huggingface.co/dbmdz/distilbert-base-turkish-cased)                  | 35GB
-| ConvBERTurk (cased)        | [here](https://huggingface.co/dbmdz/convbert-base-turkish-cased)                    | 35GB
-| ConvBERTurk mC4 (cased)    | [here](https://huggingface.co/dbmdz/convbert-base-turkish-mc4-cased)                | 242GB
-| ConvBERTurk mC4 (uncased)  | [here](https://huggingface.co/dbmdz/convbert-base-turkish-mc4-uncased)              | 242GB
+| Model name                 | Model hub link                                                                      | Pre-training corpus size |
+|----------------------------|-------------------------------------------------------------------------------------|--------------------------|
+| ELECTRA Small (cased)      | [here](https://huggingface.co/dbmdz/electra-small-turkish-cased-discriminator)      | 35GB                     |
+| ELECTRA Base (cased)       | [here](https://huggingface.co/dbmdz/electra-base-turkish-cased-discriminator)       | 35GB                     |
+| ELECTRA Base mC4 (cased)   | [here](https://huggingface.co/dbmdz/electra-base-turkish-mc4-cased-discriminator)   | 242GB                    |
+| ELECTRA Base mC4 (uncased) | [here](https://huggingface.co/dbmdz/electra-base-turkish-mc4-uncased-discriminator) | 242GB                    |
+| BERTurk (cased, 32k)       | [here](https://huggingface.co/dbmdz/bert-base-turkish-cased)                        | 35GB                     |
+| BERTurk (uncased, 32k)     | [here](https://huggingface.co/dbmdz/bert-base-turkish-uncased)                      | 35GB                     |
+| BERTurk (cased, 128k)      | [here](https://huggingface.co/dbmdz/bert-base-turkish-128k-cased)                   | 35GB                     |
+| BERTurk (uncased, 128k)    | [here](https://huggingface.co/dbmdz/bert-base-turkish-128k-uncased)                 | 35GB                     |
+| DistilBERTurk (cased)      | [here](https://huggingface.co/dbmdz/distilbert-base-turkish-cased)                  | 35GB                     |
+| ConvBERTurk (cased)        | [here](https://huggingface.co/dbmdz/convbert-base-turkish-cased)                    | 35GB                     |
+| ConvBERTurk mC4 (cased)    | [here](https://huggingface.co/dbmdz/convbert-base-turkish-mc4-cased)                | 242GB                    |
+| ConvBERTurk mC4 (uncased)  | [here](https://huggingface.co/dbmdz/convbert-base-turkish-mc4-uncased)              | 242GB                    |
 
 # *DistilBERTurk*
 
@@ -146,7 +146,7 @@ And report averaged Accuracy over 5 runs (with different seeds):
 | [BERTurk (uncased, 128k)](https://huggingface.co/dbmdz/bert-base-turkish-128k-uncased)                    | `bs8-e3-lr5e-05`   |           93.84 ± 0.04 |    94.41 ± 0.13 |
 | [BERTurk (cased, 32k)](https://huggingface.co/dbmdz/bert-base-turkish-cased)                              | `bs16-e3-lr5e-05`  |           93.95 ± 0.05 |    94.57 ± 0.04 |
 | [BERTurk (uncased, 32k)](https://huggingface.co/dbmdz/bert-base-turkish-uncased)                          | `bs16-e3-lr5e-05`  |           93.84 ± 0.04 |    94.38 ± 0.03 |
-| [ConvBERTurk (cased)](https://huggingface.co/dbmdz/convbert-base-turkish-cased)                           | `bs8-e3-lr5e-05`   |           94.03 ± 0.07 |    94.58 ± 0.06 |
+| [ConvBERTurk (cased)](https://huggingface.co/dbmdz/convbert-base-turkish-cased)                           | `bs8-e3-lr5e-05`   |       **94.03** ± 0.07 |    94.58 ± 0.06 |
 | [ConvBERTurk mC4 (cased)](https://huggingface.co/dbmdz/convbert-base-turkish-mc4-cased)                   | `bs8-e3-lr5e-05`   |           93.90 ± 0.08 |    94.52 ± 0.04 |
 | [DistilBERTurk (cased)](https://huggingface.co/dbmdz/distilbert-base-turkish-cased)                       | `bs8-e3-lr5e-05`   |           93.52 ± 0.03 |    94.19 ± 0.04 |
 | [ELECTRA Base (cased)](https://huggingface.co/dbmdz/electra-base-turkish-cased-discriminator)             | `bs16-e3-lr5e-05`  |           93.89 ± 0.05 |    94.45 ± 0.05 |
@@ -277,4 +277,4 @@ awesome logo!
 
 Research supported with Cloud TPUs from the awesome [TRC program](https://sites.research.google/trc/about/).
 
-Thanks for providing access to the TPUs ❤️
+Many thanks for providing access to the TPUs ❤️
