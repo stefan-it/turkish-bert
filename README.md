@@ -115,19 +115,123 @@ sequence length of 512 over the full training time and train the model for 1M st
 
 # Evaluation
 
-In 2024 we ran new evaluations on Pos Tagging and NER datasets. Prior evaluation results can be found [here](OLD_EVALUATIONS.md).
+In 2024 we ran new evaluations on PoS tagging, NER and sentiment classification datasets. Prior evaluation results can be found [here](OLD_EVALUATIONS.md).
+
+All evaluations are performed with the awesome Flair library and the evaluation code and configs can be found in the
+[`experiments](experiments) folder of this repository.
+
+## PoS Tagging
+
+The Model Zoo is evaluated on (the concatenation) of the following PoS Tagging datasets from Universal Dependencies:
+
+* [Atis](https://github.com/UniversalDependencies/UD_Turkish-Atis)
+* [BOUN](https://github.com/UniversalDependencies/UD_Turkish-BOUN)
+* [FrameNet](https://github.com/UniversalDependencies/UD_Turkish-FrameNet)
+* [IMST](https://github.com/UniversalDependencies/UD_Turkish-IMST)
+* [Tourism](https://github.com/UniversalDependencies/UD_Turkish-Tourism)
+
+We perform a hyper-parameter search over the following configurations:
+
+| Parameter     | Values         |
+|---------------|----------------|
+| Batch Size    | `[16, 8]`      |
+| Learning Rate | `[3e-5, 5e-5]` |
+| Epoch         | `[3]`          |
+
+And report averaged Accuracy over 5 runs (with different seeds):
+
+| Model Name                                                                                                | Best Configuration | Best Development Score | Best Test Score |
+|-----------------------------------------------------------------------------------------------------------|--------------------|-----------------------:|----------------:|
+| [BERTurk (cased, 128k)](https://huggingface.co/dbmdz/bert-base-turkish-128k-cased)                        | `bs16-e3-lr5e-05`  |           93.93 ± 0.04 |    94.50 ± 0.07 |
+| [BERTurk (uncased, 128k)](https://huggingface.co/dbmdz/bert-base-turkish-128k-uncased)                    | `bs8-e3-lr5e-05`   |           93.84 ± 0.04 |    94.41 ± 0.13 |
+| [BERTurk (cased, 32k)](https://huggingface.co/dbmdz/bert-base-turkish-cased)                              | `bs16-e3-lr5e-05`  |           93.95 ± 0.05 |    94.57 ± 0.04 |
+| [BERTurk (uncased, 32k)](https://huggingface.co/dbmdz/bert-base-turkish-uncased)                          | `bs16-e3-lr5e-05`  |           93.84 ± 0.04 |    94.38 ± 0.03 |
+| [ConvBERTurk (cased)](https://huggingface.co/dbmdz/convbert-base-turkish-cased)                           | `bs8-e3-lr5e-05`   |           94.03 ± 0.07 |    94.58 ± 0.06 |
+| [ConvBERTurk mC4 (cased)](https://huggingface.co/dbmdz/convbert-base-turkish-mc4-cased)                   | `bs8-e3-lr5e-05`   |           93.90 ± 0.08 |    94.52 ± 0.04 |
+| [DistilBERTurk (cased)](https://huggingface.co/dbmdz/distilbert-base-turkish-cased)                       | `bs8-e3-lr5e-05`   |           93.52 ± 0.03 |    94.19 ± 0.04 |
+| [ELECTRA Base (cased)](https://huggingface.co/dbmdz/electra-base-turkish-cased-discriminator)             | `bs16-e3-lr5e-05`  |           93.89 ± 0.05 |    94.45 ± 0.05 |
+| [ELECTRA Base mC4 (cased)](https://huggingface.co/dbmdz/electra-base-turkish-mc4-cased-discriminator)     | `bs16-e3-lr5e-05`  |           93.88 ± 0.05 |    94.53 ± 0.11 |
+| [ELECTRA Base mC4 (uncased)](https://huggingface.co/dbmdz/electra-base-turkish-mc4-uncased-discriminator) | `bs8-e3-lr5e-05`   |           93.80 ± 0.09 |    94.41 ± 0.04 |
+| [ELECTRA Small (cased)](https://huggingface.co/dbmdz/electra-small-turkish-cased-discriminator)           | `bs8-e3-lr5e-05`   |           93.15 ± 0.04 |    93.88 ± 0.06 |
+
+## Named Entity Recognition
+
+The Model Zoo is evaluated on the Turkish split of the WikiANN dataset, using the following hyper-parameter search:
+
+| Parameter     | Values         |
+|---------------|----------------|
+| Batch Size    | `[16, 8]`      |
+| Learning Rate | `[3e-5, 5e-5]` |
+| Epoch         | `[10]`         |
+
+Averaged F1-Score over 5 runs (with different seeds):
+
+| Model Name                                                                                                | Best Configuration | Best Development Score | Best Test Score |
+|-----------------------------------------------------------------------------------------------------------|--------------------|-----------------------:|----------------:|
+| [BERTurk (cased, 128k)](https://huggingface.co/dbmdz/bert-base-turkish-128k-cased)                        | `bs8-e10-lr3e-05`  |           93.92 ± 0.07 |    93.92 ± 0.16 |
+| [BERTurk (uncased, 128k)](https://huggingface.co/dbmdz/bert-base-turkish-128k-uncased)                    | `bs16-e10-lr3e-05` |           93.59 ± 0.05 |    93.29 ± 0.11 |
+| [BERTurk (cased, 32k)](https://huggingface.co/dbmdz/bert-base-turkish-cased)                              | `bs8-e10-lr3e-05`  |           93.36 ± 0.04 |    93.26 ± 0.14 |
+| [BERTurk (uncased, 32k)](https://huggingface.co/dbmdz/bert-base-turkish-uncased)                          | `bs8-e10-lr3e-05`  |           93.13 ± 0.19 |    92.96 ± 0.06 |
+| [ConvBERTurk (cased)](https://huggingface.co/dbmdz/convbert-base-turkish-cased)                           | `bs8-e10-lr3e-05`  |       **93.93** ± 0.07 |    93.93 ± 0.05 |
+| [ConvBERTurk mC4 (cased)](https://huggingface.co/dbmdz/convbert-base-turkish-mc4-cased)                   | `bs8-e10-lr3e-05`  |           93.68 ± 0.13 |    93.58 ± 0.15 |
+| [DistilBERTurk (cased)](https://huggingface.co/dbmdz/distilbert-base-turkish-cased)                       | `bs8-e10-lr5e-05`  |            91.8 ± 0.05 |    91.17 ± 0.03 |
+| [ELECTRA Base (cased)](https://huggingface.co/dbmdz/electra-base-turkish-cased-discriminator)             | `bs8-e10-lr3e-05`  |           93.58 ± 0.12 |    93.60 ± 0.09 |
+| [ELECTRA Base mC4 (cased)](https://huggingface.co/dbmdz/electra-base-turkish-mc4-cased-discriminator)     | `bs16-e10-lr3e-05` |           93.51 ± 0.09 |    93.42 ± 0.11 |
+| [ELECTRA Base mC4 (uncased)](https://huggingface.co/dbmdz/electra-base-turkish-mc4-uncased-discriminator) | `bs16-e10-lr5e-05` |           93.01 ± 0.12 |    92.94 ± 0.13 |
+| [ELECTRA Small (cased)](https://huggingface.co/dbmdz/electra-small-turkish-cased-discriminator)           | `bs8-e10-lr5e-05`  |           91.42 ± 0.09 |    91.07 ± 0.09 |
+
+
+## Sentiment Classification
+
+The Model Zoo is additionally evaluated on the [OffensEval-TR 2020](stefan-it/offenseval2020_tr) dataset for sentiment
+classification.
+
+The following parameters are used for a hyper-parameter search:
+
+| Parameter     | Values         |
+|---------------|----------------|
+| Batch Size    | `[16, 8]`      |
+| Learning Rate | `[3e-5, 5e-5]` |
+| Epoch         | `[3]`          |
+
+Averaged Macro F1-Score over 5 runs (with different seeds) is reported:
+
+| Model Name                                                                                                | Best Configuration | Best Development Score | Best Test Score |
+|-----------------------------------------------------------------------------------------------------------|--------------------|-----------------------:|----------------:|
+| [BERTurk (cased, 128k)](https://huggingface.co/dbmdz/bert-base-turkish-128k-cased)                        | `bs16-e3-lr3e-05`  |           81.30 ± 0.61 |    81.72 ± 0.47 |
+| [BERTurk (uncased, 128k)](https://huggingface.co/dbmdz/bert-base-turkish-128k-uncased)                    | `bs16-e3-lr3e-05`  |           80.31 ± 0.54 |    82.16 ± 0.27 |
+| [BERTurk (cased, 32k)](https://huggingface.co/dbmdz/bert-base-turkish-cased)                              | `bs16-e3-lr5e-05`  |           79.64 ± 0.50 |    80.65 ± 0.40 |
+| [BERTurk (uncased, 32k)](https://huggingface.co/dbmdz/bert-base-turkish-uncased)                          | `bs16-e3-lr3e-05`  |           80.87 ± 0.22 |    81.68 ± 0.37 |
+| [ConvBERTurk (cased)](https://huggingface.co/dbmdz/convbert-base-turkish-cased)                           | `bs16-e3-lr3e-05`  |       **82.22** ± 0.41 |    82.29 ± 0.34 |
+| [ConvBERTurk mC4 (cased)](https://huggingface.co/dbmdz/convbert-base-turkish-mc4-cased)                   | `bs16-e3-lr3e-05`  |           81.69 ± 0.29 |    81.81 ± 0.37 |
+| [DistilBERTurk (cased)](https://huggingface.co/dbmdz/distilbert-base-turkish-cased)                       | `bs16-e3-lr3e-05`  |           78.54 ± 0.55 |    79.12 ± 0.17 |
+| [ELECTRA Base (cased)](https://huggingface.co/dbmdz/electra-base-turkish-cased-discriminator)             | `bs16-e3-lr3e-05`  |           79.76 ± 0.24 |    81.69 ± 0.38 |
+| [ELECTRA Base mC4 (cased)](https://huggingface.co/dbmdz/electra-base-turkish-mc4-cased-discriminator)     | `bs8-e3-lr3e-05`   |           80.34 ± 0.67 |    82.14 ± 0.27 |
+| [ELECTRA Base mC4 (uncased)](https://huggingface.co/dbmdz/electra-base-turkish-mc4-uncased-discriminator) | `bs16-e3-lr5e-05`  |           80.46 ± 0.80 |    81.52 ± 0.56 |
+| [ELECTRA Small (cased)](https://huggingface.co/dbmdz/electra-small-turkish-cased-discriminator)           | `bs16-e3-lr5e-05`  |           77.25 ± 0.47 |    79.89 ± 0.28 |
+
+## Overall
+
+The following table shows the performance of all models over all datasets:
+
+| Model Name                                                                                                | Overall Development | Overall Test |
+|-----------------------------------------------------------------------------------------------------------|--------------------:|-------------:|
+| [BERTurk (cased, 128k)](https://huggingface.co/dbmdz/bert-base-turkish-128k-cased)                        |               89.72 |        90.05 |
+| [BERTurk (uncased, 128k)](https://huggingface.co/dbmdz/bert-base-turkish-128k-uncased)                    |               89.25 |        89.95 |
+| [BERTurk (cased, 32k)](https://huggingface.co/dbmdz/bert-base-turkish-cased)                              |               88.98 |        89.49 |
+| [BERTurk (uncased, 32k)](https://huggingface.co/dbmdz/bert-base-turkish-uncased)                          |               89.28 |        89.67 |
+| [ConvBERTurk (cased)](https://huggingface.co/dbmdz/convbert-base-turkish-cased)                           |           **90.06** |        90.27 |
+| [ConvBERTurk mC4 (cased)](https://huggingface.co/dbmdz/convbert-base-turkish-mc4-cased)                   |               89.76 |        89.97 |
+| [DistilBERTurk (cased)](https://huggingface.co/dbmdz/distilbert-base-turkish-cased)                       |               87.95 |        88.16 |
+| [ELECTRA Base (cased)](https://huggingface.co/dbmdz/electra-base-turkish-cased-discriminator)             |               89.08 |        89.91 |
+| [ELECTRA Base mC4 (cased)](https://huggingface.co/dbmdz/electra-base-turkish-mc4-cased-discriminator)     |               89.24 |        90.03 |
+| [ELECTRA Base mC4 (uncased)](https://huggingface.co/dbmdz/electra-base-turkish-mc4-uncased-discriminator) |               89.09 |        89.62 |
+| [ELECTRA Small (cased)](https://huggingface.co/dbmdz/electra-small-turkish-cased-discriminator)           |               87.27 |        88.28 |
 
 # Model usage
 
 All trained models can be used from the [DBMDZ](https://github.com/dbmdz) Hugging Face [model hub page](https://huggingface.co/dbmdz)
-using their model name. The following models are available:
-
-* *BERTurk* models with 32k vocabulary: `dbmdz/bert-base-turkish-cased` and `dbmdz/bert-base-turkish-uncased`
-* *BERTurk* models with 128k vocabulary: `dbmdz/bert-base-turkish-128k-cased` and `dbmdz/bert-base-turkish-128k-uncased`
-* *ELECTRA* small and base cased models (discriminator): `dbmdz/electra-small-turkish-cased-discriminator` and `dbmdz/electra-base-turkish-cased-discriminator`
-* *ELECTRA* base cased and uncased models, trained on Turkish part of mC4 corpus (discriminator): `dbmdz/electra-small-turkish-mc4-cased-discriminator` and `dbmdz/electra-small-turkish-mc4-uncased-discriminator`
-* *ConvBERTurk* model with 32k vocabulary: `dbmdz/convbert-base-turkish-cased`
-* *ConvBERTurk* base cased and uncased models, trained on Turkish part of mC4 corpus: `dbmdz/convbert-base-turkish-mc4-cased` and `dbmdz/convbert-base-turkish-mc4-uncased`
+using their model name.
 
 Example usage with 🤗/Transformers:
 
@@ -171,5 +275,6 @@ us the Turkish NER dataset for evaluation.
 We would like to thank [Merve Noyan](https://twitter.com/mervenoyann) for the
 awesome logo!
 
-Research supported with Cloud TPUs from Google's TensorFlow Research Cloud (TFRC).
-Thanks for providing access to the TFRC ❤️
+Research supported with Cloud TPUs from the awesome [TRC program](https://sites.research.google/trc/about/).
+
+Thanks for providing access to the TPUs ❤️
