@@ -6,8 +6,8 @@ from flair import set_seed
 
 from flair.data import MultiCorpus
 from flair.datasets import  NER_MULTI_XTREME
-from flair.embeddings import TransformerWordEmbeddings
-from flair.models import SequenceTagger
+from flair.embeddings import TransformerWordEmbeddings, TransformerDocumentEmbeddings
+from flair.models import SequenceTagger, TextClassifier
 from flair.trainers import ModelTrainer
 from flair.trainers.plugins.loggers.tensorboard import TensorboardLogger
 
@@ -15,7 +15,9 @@ from pathlib import Path
 
 from typing import List
 
+from offenseval2020_tr_dataset import OFFENSEVAL_TR_2020
 from ud_datasets import UD_GENERIC
+
 
 logger = logging.getLogger("flair")
 logger.setLevel(level="INFO")
@@ -38,7 +40,59 @@ class ExperimentConfiguration:
     use_tensorboard: bool = True
 
 
-def run_experiment(experiment_configuration: ExperimentConfiguration) -> str:
+def run_experiment_text_classification(experiment_configuration: ExperimentConfiguration) -> str:
+    set_seed(experiment_configuration.seed)
+
+    if experiment_configuration.task == "sentiment":
+        corpus = OFFENSEVAL_TR_2020()
+        label_type = "class"
+
+    label_dict = corpus.make_label_dictionary(label_type=label_type)
+
+    document_embeddings = TransformerDocumentEmbeddings(experiment_configuration.base_model, fine_tune=True)
+
+    classifier = TextClassifier(document_embeddings, label_dictionary=label_dict, label_type=label_type)
+
+    trainer = ModelTrainer(classifier, corpus)
+
+    output_path_parts = [
+        "flair",
+        experiment_configuration.task,
+        experiment_configuration.base_model_short,
+        f"bs{experiment_configuration.batch_size}",
+        f"e{experiment_configuration.epoch}",
+        f"lr{experiment_configuration.learning_rate}",
+        str(experiment_configuration.seed)
+    ]
+
+    output_path = "-".join(output_path_parts)
+
+    plugins = []
+
+    if experiment_configuration.use_tensorboard:
+        logger.info("TensorBoard logging is enabled")
+
+        tb_path = Path(f"{output_path}/runs")
+        tb_path.mkdir(parents=True, exist_ok=True)
+
+        plugins.append(TensorboardLogger(log_dir=str(tb_path), comment=output_path))
+
+    trainer.fine_tune(
+        output_path,
+        reduce_transformer_vocab=False,  # set this to False for slow version
+        mini_batch_size=experiment_configuration.batch_size,
+        max_epochs=experiment_configuration.epoch,
+        learning_rate=experiment_configuration.learning_rate,
+        main_evaluation_metric=("macro avg", "f1-score"),
+        use_final_model_for_eval=False,
+    )
+
+    # Finally, print model card for information
+    classifier.print_model_card()
+
+    return output_path
+
+def run_experiment_token_classification(experiment_configuration: ExperimentConfiguration) -> str:
     set_seed(experiment_configuration.seed)
 
     corpora = []
@@ -113,7 +167,6 @@ def run_experiment(experiment_configuration: ExperimentConfiguration) -> str:
 
         plugins.append(TensorboardLogger(log_dir=str(tb_path), comment=output_path))
 
-
     trainer.fine_tune(
         output_path,
         learning_rate=experiment_configuration.learning_rate,
@@ -130,3 +183,9 @@ def run_experiment(experiment_configuration: ExperimentConfiguration) -> str:
     tagger.print_model_card()
 
     return output_path
+
+def run_experiment(experiment_configuration: ExperimentConfiguration) -> str:
+    if experiment_configuration.task in ["pos", "ner"]:
+        return run_experiment_token_classification(experiment_configuration)
+    elif experiment_configuration.task in ["sentiment"]:
+        return run_experiment_text_classification(experiment_configuration)
