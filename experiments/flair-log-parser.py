@@ -15,6 +15,8 @@ dev_results = defaultdict(list)
 test_results_micro = defaultdict(list)
 test_results_macro = defaultdict(list)
 
+log_dirs = [log_dir for log_dir in log_dirs if ".cache" not in str(log_dir)]
+
 for log_dir in log_dirs:
     training_log = log_dir / "training.log"
 
@@ -43,6 +45,10 @@ for log_dir in log_dirs:
             if "F-score (micro" in line:
                 test_result = line.split(" ")[-1]
                 test_results_micro[result_identifier].append(float(test_result))
+
+            if "F-score (macro" in line:
+                test_result = line.split(" ")[-1]
+                test_results_macro[result_identifier].append(float(test_result))
 
         best_dev_result = max([float(value) for value in all_dev_results])
         dev_results[result_identifier].append(best_dev_result)
@@ -101,3 +107,11 @@ test_table_micro = [f"`{best_dev_configuration}`", *[round(res * 100, 2) for res
 
 print(tabulate([test_table_micro], headers=header, tablefmt="github") + "\n")
 
+print("")
+
+print(f"Test Score (Macro F1) for best configuration ({best_dev_configuration}):\n")
+
+test_table_macro = [f"`{best_dev_configuration}`", *[round(res * 100, 2) for res in test_results_macro[best_dev_configuration]],
+                    f"{round(np.mean(test_results_macro[best_dev_configuration]) * 100, 2)} ± {round(np.std(test_results_macro[best_dev_configuration]) * 100, 2)}"]
+
+print(tabulate([test_table_macro], headers=header, tablefmt="github") + "\n")
