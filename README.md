@@ -19,7 +19,7 @@ Logo is provided by [Merve Noyan](https://twitter.com/mervenoyann).
 * 23.09.2021: Release of uncased ELECTRA and ConvBERT models and cased ELECTRA model, all trained on mC4 corpus.
 * 24.06.2021: Release of new ELECTRA model, trained on Turkish part of mC4 dataset. Repository got new awesome logo from Merve Noyan.
 * 16.03.2021: Release of *ConvBERTurk* model and more evaluations on different downstream tasks.
-* 12.05.2020: Release of ELEC**TR**A ([small](https://huggingface.co/dbmdz/electra-small-turkish-cased-discriminator) 
+* 12.05.2020: Release of ELEC**TR**A ([small](https://huggingface.co/dbmdz/electra-small-turkish-cased-discriminator)
               and [base](https://huggingface.co/dbmdz/electra-base-turkish-cased-discriminator)) models, see [here](electra/README.md).
 * 25.03.2020: Release of *BERTurk* uncased model and *BERTurk* models with larger vocab size (128k, cased and uncased).
 * 11.03.2020: Release of the cased distilled *BERTurk* model: *DistilBERTurk*.
@@ -147,7 +147,7 @@ And report averaged Accuracy over 5 runs (with different seeds):
 | [BERTurk (cased, 32k)](https://huggingface.co/dbmdz/bert-base-turkish-cased)                              | `bs16-e3-lr5e-05`  |           93.95 ± 0.05 |    94.57 ± 0.04 |
 | [BERTurk (uncased, 32k)](https://huggingface.co/dbmdz/bert-base-turkish-uncased)                          | `bs16-e3-lr5e-05`  |           93.84 ± 0.04 |    94.38 ± 0.03 |
 | [ConvBERTurk (cased)](https://huggingface.co/dbmdz/convbert-base-turkish-cased)                           | `bs8-e3-lr5e-05`   |       **94.03** ± 0.07 |    94.58 ± 0.06 |
-| [ConvBERTurk mC4 (cased)](https://huggingface.co/dbmdz/convbert-base-turkish-mc4-cased)                   | `bs8-e3-lr5e-05`   |           93.90 ± 0.08 |    94.52 ± 0.04 |
+| [ConvBERTurk mC4 (uncased)](https://huggingface.co/dbmdz/convbert-base-turkish-mc4-uncased)               | `bs8-e3-lr5e-05`   |           93.90 ± 0.08 |    94.52 ± 0.04 |
 | [DistilBERTurk (cased)](https://huggingface.co/dbmdz/distilbert-base-turkish-cased)                       | `bs8-e3-lr5e-05`   |           93.52 ± 0.03 |    94.19 ± 0.04 |
 | [ELECTRA Base (cased)](https://huggingface.co/dbmdz/electra-base-turkish-cased-discriminator)             | `bs16-e3-lr5e-05`  |           93.89 ± 0.05 |    94.45 ± 0.05 |
 | [ELECTRA Base mC4 (cased)](https://huggingface.co/dbmdz/electra-base-turkish-mc4-cased-discriminator)     | `bs16-e3-lr5e-05`  |           93.88 ± 0.05 |    94.53 ± 0.11 |
@@ -173,7 +173,7 @@ Averaged F1-Score over 5 runs (with different seeds):
 | [BERTurk (cased, 32k)](https://huggingface.co/dbmdz/bert-base-turkish-cased)                              | `bs8-e10-lr3e-05`  |           93.36 ± 0.04 |    93.26 ± 0.14 |
 | [BERTurk (uncased, 32k)](https://huggingface.co/dbmdz/bert-base-turkish-uncased)                          | `bs8-e10-lr3e-05`  |           93.13 ± 0.19 |    92.96 ± 0.06 |
 | [ConvBERTurk (cased)](https://huggingface.co/dbmdz/convbert-base-turkish-cased)                           | `bs8-e10-lr3e-05`  |       **93.93** ± 0.07 |    93.93 ± 0.05 |
-| [ConvBERTurk mC4 (cased)](https://huggingface.co/dbmdz/convbert-base-turkish-mc4-cased)                   | `bs8-e10-lr3e-05`  |           93.68 ± 0.13 |    93.58 ± 0.15 |
+| [ConvBERTurk mC4 (uncased)](https://huggingface.co/dbmdz/convbert-base-turkish-mc4-uncased)               | `bs8-e10-lr3e-05`  |           93.68 ± 0.13 |    93.58 ± 0.15 |
 | [DistilBERTurk (cased)](https://huggingface.co/dbmdz/distilbert-base-turkish-cased)                       | `bs8-e10-lr5e-05`  |            91.8 ± 0.05 |    91.17 ± 0.03 |
 | [ELECTRA Base (cased)](https://huggingface.co/dbmdz/electra-base-turkish-cased-discriminator)             | `bs8-e10-lr3e-05`  |           93.58 ± 0.12 |    93.60 ± 0.09 |
 | [ELECTRA Base mC4 (cased)](https://huggingface.co/dbmdz/electra-base-turkish-mc4-cased-discriminator)     | `bs16-e10-lr3e-05` |           93.51 ± 0.09 |    93.42 ± 0.11 |
@@ -203,7 +203,7 @@ Averaged Macro F1-Score over 5 runs (with different seeds) is reported:
 | [BERTurk (cased, 32k)](https://huggingface.co/dbmdz/bert-base-turkish-cased)                              | `bs16-e3-lr5e-05`  |           79.64 ± 0.50 |    80.65 ± 0.40 |
 | [BERTurk (uncased, 32k)](https://huggingface.co/dbmdz/bert-base-turkish-uncased)                          | `bs16-e3-lr3e-05`  |           80.87 ± 0.22 |    81.68 ± 0.37 |
 | [ConvBERTurk (cased)](https://huggingface.co/dbmdz/convbert-base-turkish-cased)                           | `bs16-e3-lr3e-05`  |       **82.22** ± 0.41 |    82.29 ± 0.34 |
-| [ConvBERTurk mC4 (cased)](https://huggingface.co/dbmdz/convbert-base-turkish-mc4-cased)                   | `bs16-e3-lr3e-05`  |           81.69 ± 0.29 |    81.81 ± 0.37 |
+| [ConvBERTurk mC4 (uncased)](https://huggingface.co/dbmdz/convbert-base-turkish-mc4-uncased)               | `bs16-e3-lr3e-05`  |           81.69 ± 0.29 |    81.81 ± 0.37 |
 | [DistilBERTurk (cased)](https://huggingface.co/dbmdz/distilbert-base-turkish-cased)                       | `bs16-e3-lr3e-05`  |           78.54 ± 0.55 |    79.12 ± 0.17 |
 | [ELECTRA Base (cased)](https://huggingface.co/dbmdz/electra-base-turkish-cased-discriminator)             | `bs16-e3-lr3e-05`  |           79.76 ± 0.24 |    81.69 ± 0.38 |
 | [ELECTRA Base mC4 (cased)](https://huggingface.co/dbmdz/electra-base-turkish-mc4-cased-discriminator)     | `bs8-e3-lr3e-05`   |           80.34 ± 0.67 |    82.14 ± 0.27 |
@@ -221,7 +221,7 @@ The following table shows the performance of all models over all datasets:
 | [BERTurk (cased, 32k)](https://huggingface.co/dbmdz/bert-base-turkish-cased)                              |               88.98 |        89.49 |
 | [BERTurk (uncased, 32k)](https://huggingface.co/dbmdz/bert-base-turkish-uncased)                          |               89.28 |        89.67 |
 | [ConvBERTurk (cased)](https://huggingface.co/dbmdz/convbert-base-turkish-cased)                           |           **90.06** |        90.27 |
-| [ConvBERTurk mC4 (cased)](https://huggingface.co/dbmdz/convbert-base-turkish-mc4-cased)                   |               89.76 |        89.97 |
+| [ConvBERTurk mC4 (uncased)](https://huggingface.co/dbmdz/convbert-base-turkish-mc4-uncased)               |               89.76 |        89.97 |
 | [DistilBERTurk (cased)](https://huggingface.co/dbmdz/distilbert-base-turkish-cased)                       |               87.95 |        88.16 |
 | [ELECTRA Base (cased)](https://huggingface.co/dbmdz/electra-base-turkish-cased-discriminator)             |               89.08 |        89.91 |
 | [ELECTRA Base mC4 (cased)](https://huggingface.co/dbmdz/electra-base-turkish-mc4-cased-discriminator)     |               89.24 |        90.03 |
