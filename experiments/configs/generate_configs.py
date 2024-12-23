@@ -87,6 +87,7 @@ model_mapping = {
     "berturk_cased":             "dbmdz/bert-base-turkish-cased",
     "berturk_uncased":           "dbmdz/bert-base-turkish-uncased",
     "convbert_base_cased":       "dbmdz/convbert-base-turkish-cased",
+    "convbert_base_mc4_cased":   "dbmdz/convbert-base-turkish-mc4-cased",
     "convbert_base_mc4_uncased": "dbmdz/convbert-base-turkish-mc4-uncased",
     "distilberturk_cased":       "dbmdz/distilbert-base-turkish-cased",
     "electra_base_cased":        "dbmdz/electra-base-turkish-cased-discriminator",
