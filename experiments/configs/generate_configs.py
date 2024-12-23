@@ -82,17 +82,17 @@ cuda: "0"
 """
 
 model_mapping = {
-    "berturk_128k_cased":      "dbmdz/bert-base-turkish-128k-cased",
-    "berturk_128k_uncased":    "dbmdz/bert-base-turkish-128k-uncased",
-    "berturk_cased":           "dbmdz/bert-base-turkish-cased",
-    "berturk_uncased":         "dbmdz/bert-base-turkish-uncased",
-    "convbert_base_cased":     "dbmdz/convbert-base-turkish-cased",
-    "convbert_base_mc4_cased":  "dbmdz/convbert-base-turkish-mc4-uncased",
-    "distilberturk_cased":     "dbmdz/distilbert-base-turkish-cased",
-    "electra_base_cased":      "dbmdz/electra-base-turkish-cased-discriminator",
-    "electra_base_mc4_cased":   "dbmdz/electra-base-turkish-mc4-cased-discriminator",
-    "electra_base_mc4_uncased": "dbmdz/electra-base-turkish-mc4-uncased-discriminator",
-    "electra_small_cased":     "dbmdz/electra-small-turkish-cased-discriminator",
+    "berturk_128k_cased":        "dbmdz/bert-base-turkish-128k-cased",
+    "berturk_128k_uncased":      "dbmdz/bert-base-turkish-128k-uncased",
+    "berturk_cased":             "dbmdz/bert-base-turkish-cased",
+    "berturk_uncased":           "dbmdz/bert-base-turkish-uncased",
+    "convbert_base_cased":       "dbmdz/convbert-base-turkish-cased",
+    "convbert_base_mc4_uncased": "dbmdz/convbert-base-turkish-mc4-uncased",
+    "distilberturk_cased":       "dbmdz/distilbert-base-turkish-cased",
+    "electra_base_cased":        "dbmdz/electra-base-turkish-cased-discriminator",
+    "electra_base_mc4_cased":    "dbmdz/electra-base-turkish-mc4-cased-discriminator",
+    "electra_base_mc4_uncased":  "dbmdz/electra-base-turkish-mc4-uncased-discriminator",
+    "electra_small_cased":       "dbmdz/electra-small-turkish-cased-discriminator",
 }
 
 pos_datasets = {

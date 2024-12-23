@@ -5,7 +5,7 @@ learning_rates:
 - 3.0e-05
 - 5.0e-05
 epochs:
-- 10
+- 3
 context_sizes:
 - 0
 seeds:
@@ -20,8 +20,8 @@ subword_poolings:
 use_crf: false
 use_tensorboard: true
 cuda: '0'
-task: ner
+task: sentiment
 datasets:
-- xtreme/tr
+- offenseval/tr_2020
 hf_model: dbmdz/convbert-base-turkish-mc4-uncased
-model_short_name: convbert_base_mc4_cased
+model_short_name: convbert_base_mc4_uncased
