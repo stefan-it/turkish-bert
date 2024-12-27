@@ -205,7 +205,7 @@ Averaged Macro F1-Score over 5 runs (with different seeds) is reported:
 | [BERTurk (cased, 32k)](https://huggingface.co/dbmdz/bert-base-turkish-cased)                              | `bs16-e3-lr5e-05`  |           79.64 ± 0.50 |    80.65 ± 0.40 |
 | [BERTurk (uncased, 32k)](https://huggingface.co/dbmdz/bert-base-turkish-uncased)                          | `bs16-e3-lr3e-05`  |           80.87 ± 0.22 |    81.68 ± 0.37 |
 | [ConvBERTurk (cased)](https://huggingface.co/dbmdz/convbert-base-turkish-cased)                           | `bs16-e3-lr3e-05`  |       **82.22** ± 0.41 |    82.29 ± 0.34 |
-| [ConvBERTurk mC4 (cased)](https://huggingface.co/dbmdz/convbert-base-turkish-mc4-cased)                   | `bs16-e3-lr3e-05`  |           82.16 ± 0.46 |    88.60 ± 0.21 |
+| [ConvBERTurk mC4 (cased)](https://huggingface.co/dbmdz/convbert-base-turkish-mc4-cased)                   | `bs16-e3-lr3e-05`  |           82.16 ± 0.46 |    82.10 ± 0.30 |
 | [ConvBERTurk mC4 (uncased)](https://huggingface.co/dbmdz/convbert-base-turkish-mc4-uncased)               | `bs16-e3-lr3e-05`  |           81.69 ± 0.29 |    81.81 ± 0.37 |
 | [DistilBERTurk (cased)](https://huggingface.co/dbmdz/distilbert-base-turkish-cased)                       | `bs16-e3-lr3e-05`  |           78.54 ± 0.55 |    79.12 ± 0.17 |
 | [ELECTRA Base (cased)](https://huggingface.co/dbmdz/electra-base-turkish-cased-discriminator)             | `bs16-e3-lr3e-05`  |           79.76 ± 0.24 |    81.69 ± 0.38 |
@@ -224,7 +224,7 @@ The following table shows the performance of all models over all datasets:
 | [BERTurk (cased, 32k)](https://huggingface.co/dbmdz/bert-base-turkish-cased)                              |               88.98 |        89.49 |
 | [BERTurk (uncased, 32k)](https://huggingface.co/dbmdz/bert-base-turkish-uncased)                          |               89.28 |        89.67 |
 | [ConvBERTurk (cased)](https://huggingface.co/dbmdz/convbert-base-turkish-cased)                           |           **90.06** |        90.27 |
-| [ConvBERTurk mC4 (cased)](https://huggingface.co/dbmdz/convbert-base-turkish-mc4-cased)                   |               90.03 |        92.25 |
+| [ConvBERTurk mC4 (cased)](https://huggingface.co/dbmdz/convbert-base-turkish-mc4-cased)                   |               90.03 |        90.09 |
 | [ConvBERTurk mC4 (uncased)](https://huggingface.co/dbmdz/convbert-base-turkish-mc4-uncased)               |               89.76 |        89.97 |
 | [DistilBERTurk (cased)](https://huggingface.co/dbmdz/distilbert-base-turkish-cased)                       |               87.95 |        88.16 |
 | [ELECTRA Base (cased)](https://huggingface.co/dbmdz/electra-base-turkish-cased-discriminator)             |               89.08 |        89.91 |
