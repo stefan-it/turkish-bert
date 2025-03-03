@@ -122,8 +122,8 @@ pretrained with the [UL2 objective](https://arxiv.org/abs/2205.05131).
 The model was pretrained with the awesome [T5X](https://github.com/google-research/t5x) library for 2M steps with a
 batch size of 128 and an input and output sequence length of 512 for 16.56 days on a v3-32 TPU Pod.
 
-The Turkish part of the amazing [FineWeb2](https://huggingface.co/datasets/HuggingFaceFW/fineweb-2), filtered for a
-minimum language score of 0.99 resulting in a 262GB pretraining corpus.
+The Turkish part of the amazing [FineWeb2](https://huggingface.co/datasets/HuggingFaceFW/fineweb-2) is used as
+pretraining corpus. Basic filtering with a minimum language score of 0.99 is performed resulting in a 262GB corpus.
 
 # Evaluation
 
