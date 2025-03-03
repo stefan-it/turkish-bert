@@ -77,6 +77,7 @@ Here's an overview of all available models, incl. their training corpus size:
 | ConvBERTurk (cased)        | [here](https://huggingface.co/dbmdz/convbert-base-turkish-cased)                    | 35GB                     |
 | ConvBERTurk mC4 (cased)    | [here](https://huggingface.co/dbmdz/convbert-base-turkish-mc4-cased)                | 242GB                    |
 | ConvBERTurk mC4 (uncased)  | [here](https://huggingface.co/dbmdz/convbert-base-turkish-mc4-uncased)              | 242GB                    |
+| BERT5urk                   | [here](stefan-it/bert5urk)                                                          | 262GB                    |
 
 # *DistilBERTurk*
 
@@ -112,6 +113,17 @@ More details about the pre-training can be found [here](convbert/README.md).
 
 In addition to the ELEC**TR**A base model, we also trained an ELECTRA model on the Turkish part of the mC4 corpus. We use a
 sequence length of 512 over the full training time and train the model for 1M steps on a v3-32 TPU.
+
+# BERT5urk
+
+BERT5urk is a new 1.42B encoder-decoder model based on the [efficient](https://arxiv.org/abs/2109.10686) [T5 architecture](https://arxiv.org/abs/1910.10683) and
+pretrained with the [UL2 objective](https://arxiv.org/abs/2205.05131).
+
+The model was pretrained with the awesome [T5X](https://github.com/google-research/t5x) library for 2M steps with a
+batch size of 128 and an input and output sequence length of 512 for 16.56 days on a v3-32 TPU Pod.
+
+The Turkish part of the amazing [FineWeb2](https://huggingface.co/datasets/HuggingFaceFW/fineweb-2), filtered for a
+minimum language score of 0.99 resulting in a 262GB pretraining corpus.
 
 # Evaluation
 
@@ -154,6 +166,7 @@ And report averaged Accuracy over 5 runs (with different seeds):
 | [ELECTRA Base mC4 (cased)](https://huggingface.co/dbmdz/electra-base-turkish-mc4-cased-discriminator)     | `bs16-e3-lr5e-05`  |           93.88 ± 0.05 |    94.53 ± 0.11 |
 | [ELECTRA Base mC4 (uncased)](https://huggingface.co/dbmdz/electra-base-turkish-mc4-uncased-discriminator) | `bs8-e3-lr5e-05`   |           93.80 ± 0.09 |    94.41 ± 0.04 |
 | [ELECTRA Small (cased)](https://huggingface.co/dbmdz/electra-small-turkish-cased-discriminator)           | `bs8-e3-lr5e-05`   |           93.15 ± 0.04 |    93.88 ± 0.06 |
+| [BERT5urk](https://huggingface.co/stefan-it/bert5urk)                                                     | `bs8-e3-lr5e-05`   |           93.75 ± 0.04 |    94.33 ± 0.06 |
 
 ## Named Entity Recognition
 
@@ -181,7 +194,7 @@ Averaged F1-Score over 5 runs (with different seeds):
 | [ELECTRA Base mC4 (cased)](https://huggingface.co/dbmdz/electra-base-turkish-mc4-cased-discriminator)     | `bs16-e10-lr3e-05` |           93.51 ± 0.09 |    93.42 ± 0.11 |
 | [ELECTRA Base mC4 (uncased)](https://huggingface.co/dbmdz/electra-base-turkish-mc4-uncased-discriminator) | `bs16-e10-lr5e-05` |           93.01 ± 0.12 |    92.94 ± 0.13 |
 | [ELECTRA Small (cased)](https://huggingface.co/dbmdz/electra-small-turkish-cased-discriminator)           | `bs8-e10-lr5e-05`  |           91.42 ± 0.09 |    91.07 ± 0.09 |
-
+| [BERT5urk](https://huggingface.co/stefan-it/bert5urk)                                                     | `bs8-e10-lr5e-05`  |       **93.93** ± 0.10 |    93.66 ± 0.10 |
 
 ## Sentiment Classification
 
@@ -212,6 +225,7 @@ Averaged Macro F1-Score over 5 runs (with different seeds) is reported:
 | [ELECTRA Base mC4 (cased)](https://huggingface.co/dbmdz/electra-base-turkish-mc4-cased-discriminator)     | `bs8-e3-lr3e-05`   |           80.34 ± 0.67 |    82.14 ± 0.27 |
 | [ELECTRA Base mC4 (uncased)](https://huggingface.co/dbmdz/electra-base-turkish-mc4-uncased-discriminator) | `bs16-e3-lr5e-05`  |           80.46 ± 0.80 |    81.52 ± 0.56 |
 | [ELECTRA Small (cased)](https://huggingface.co/dbmdz/electra-small-turkish-cased-discriminator)           | `bs16-e3-lr5e-05`  |           77.25 ± 0.47 |    79.89 ± 0.28 |
+| [BERT5urk](https://huggingface.co/stefan-it/bert5urk)                                                     | `bs8-e3-lr0.00015` |           82.20 ± 0.88 |    82.78 ± 0.44 |
 
 ## Overall
 
@@ -231,6 +245,7 @@ The following table shows the performance of all models over all datasets:
 | [ELECTRA Base mC4 (cased)](https://huggingface.co/dbmdz/electra-base-turkish-mc4-cased-discriminator)     |               89.24 |        90.03 |
 | [ELECTRA Base mC4 (uncased)](https://huggingface.co/dbmdz/electra-base-turkish-mc4-uncased-discriminator) |               89.09 |        89.62 |
 | [ELECTRA Small (cased)](https://huggingface.co/dbmdz/electra-small-turkish-cased-discriminator)           |               87.27 |        88.28 |
+| [BERT5urk](https://huggingface.co/stefan-it/bert5urk)                                                     |               89.96 |        90.26 |
 
 # Model usage
 
