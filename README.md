@@ -296,4 +296,4 @@ awesome logo!
 
 Research supported with Cloud TPUs from the awesome [TRC program](https://sites.research.google/trc/about/).
 
-Many thanks for providing access to the TPUs ❤️
+Many thanks for providing access to the TPUs over a lot of years ❤️
