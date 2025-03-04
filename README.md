@@ -5,8 +5,9 @@
 </p>
 
 [![DOI](https://zenodo.org/badge/237817454.svg)](https://zenodo.org/badge/latestdoi/237817454)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14963493.svg)](https://doi.org/10.5281/zenodo.14963493)
 
-We present community-driven BERT, DistilBERT, ELECTRA and ConvBERT models for Turkish 🎉
+We present community-driven BERT, DistilBERT, ELECTRA, ConvBERT and T5 models for Turkish 🎉
 
 Some datasets used for pretraining and evaluation are contributed from the
 awesome Turkish NLP community, as well as the decision for the BERT model name: BERTurk.
@@ -283,6 +284,27 @@ You can use the following BibTeX entry for citation:
   version      = {1.0.0},
   doi          = {10.5281/zenodo.3770924},
   url          = {https://doi.org/10.5281/zenodo.3770924}
+}
+```
+
+If you are using newer models - such as BERT5urk - please use this BibTeX entry for citation:
+
+```bibtex
+@software{stefan_schweter_2025_14963493,
+  author       = {Stefan Schweter},
+  title        = {BERTurk v2},
+  month        = mar,
+  year         = 2025,
+  publisher    = {Zenodo},
+  version      = {2.0.0},
+  doi          = {10.5281/zenodo.14963493},
+  url          = {https://doi.org/10.5281/zenodo.14963493},
+  swhid        = {swh:1:dir:575750c0320a0fd3f1cc74cfd036fc1459f994cc
+                   ;origin=https://doi.org/10.5281/zenodo.3770923;vis
+                   it=swh:1:snp:d0c6e71f3a152fb42e82b118c2873552d63a7
+                   e96;anchor=swh:1:rel:cdd678b8b0efb7ced863bd1a0cc50
+                   5fdcd4cf34a;path=stefan-it-turkish-bert-2cd933b
+                  },
 }
 ```
 
