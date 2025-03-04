@@ -15,6 +15,7 @@ Logo is provided by [Merve Noyan](https://twitter.com/mervenoyann).
 
 # Changelog
 
+* 03.03.2025: Release of [BERT5urk](https://huggingface.co/stefan-it/bert5urk) - pretrained on Turkish part of [FineWeb2 corpus](https://huggingface.co/datasets/HuggingFaceFW/fineweb-2).
 * 21.12.2024: New evaluations with Flair are added.
 * 23.09.2021: Release of uncased ELECTRA and ConvBERT models and cased ELECTRA model, all trained on mC4 corpus.
 * 24.06.2021: Release of new ELECTRA model, trained on Turkish part of mC4 dataset. Repository got new awesome logo from Merve Noyan.
